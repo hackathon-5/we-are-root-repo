@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        NSLog("Welcome to Hackathon 5!")
+        
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
@@ -24,7 +26,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.makeKeyAndVisible()
         
+        //Basic Notification Config...no onboarding to warn peeps.
+        let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+        
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        var isSandbox = false
+        
+        #if DEBUG
+            NSLog("Push Notification Environment: Sandbox")
+            isSandbox = true
+        #else
+            NSLog("Push Notification Environment: Production")
+        #endif
+        
+        GGLInstanceID.sharedInstance().startWithConfig(GGLInstanceIDConfig.defaultConfig())
+        var registrationOptions = [kGGLInstanceIDRegisterAPNSOption:deviceToken,
+            kGGLInstanceIDAPNSServerTypeSandboxOption:isSandbox]
+        
+        GGLInstanceID.sharedInstance().tokenWithAuthorizedEntity("1036154104556", scope: kGGLInstanceIDScopeGCM, options: registrationOptions) { (token, error) -> Void in
+            
+            if token != nil{
+                NSLog("GCM Success: %@", token)
+            }
+            else
+            {
+                NSLog("GCM Error: %@", error)
+            }
+        }
+
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+        NSLog("Push registration error: %@", error)
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
