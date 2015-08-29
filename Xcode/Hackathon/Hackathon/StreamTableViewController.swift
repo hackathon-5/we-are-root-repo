@@ -135,6 +135,15 @@ class StreamTableViewController: UITableViewController, DropdownTitleViewDelegat
                     })
                     
                     self.streamNewsListItems = itemsInStream
+                    
+                    if count(itemsInStream) == 0
+                    {
+                        let alert = UIAlertController(title: "Repositron", message: "It looks like you don't have any news. Tap 'Stream' to add some repositories to your newsfeed.", preferredStyle: .Alert)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
                 }
                 else
                 {

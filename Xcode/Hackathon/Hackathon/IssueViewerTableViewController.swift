@@ -349,7 +349,7 @@ class IssueViewerTableViewController: UITableViewController, RespondToCommentDel
             let cell = tableView.dequeueReusableCellWithIdentifier("FooterIssueMetricsTableViewCell", forIndexPath: indexPath) as! FooterIssueMetricsTableViewCell
             
             //Calculate labels
-            var labelsText = ""
+            var labelsText = "–"
             
             if let labels = self.issue?.labels
             {
@@ -366,9 +366,25 @@ class IssueViewerTableViewController: UITableViewController, RespondToCommentDel
                 }
             }
             
-            var milestoneText = self.issue?.milestone?.title
+            var milestoneText = "–"
             
-            var assignedTo = self.issue?.assignee?.login
+            if let milestoneTitle = self.issue?.milestone?.title
+            {
+                if count(milestoneTitle) > 0
+                {
+                    milestoneText = milestoneTitle
+                }
+            }
+            
+            var assignedTo = "–"
+            
+            if let assigneeTitle = self.issue?.assignee?.login
+            {
+                if count(assigneeTitle) > 0
+                {
+                    assignedTo = assigneeTitle
+                }
+            }
             
             cell.labelsLabel.text = labelsText
             cell.assignedToLabel.text = assignedTo
