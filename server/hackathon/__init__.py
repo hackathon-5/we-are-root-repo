@@ -1,3 +1,6 @@
+import logging
+import sys
+
 from werkzeug.exceptions import default_exceptions, HTTPException
 from flask import Flask, g, request, jsonify, abort
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -9,6 +12,7 @@ db = SQLAlchemy(app)
 app.config.from_object('hackathon.config')
 
 from hackathon.models import AccessToken
+
 
 # Authentication
 def authenticate_user():
@@ -24,9 +28,17 @@ def authenticate_user():
         abort(403)
 
     g.name = access_token.account.name
+    g.account_id = access_token.account_id
     g.github_token = access_token.github_token
 
 app.before_request(authenticate_user)
+
+
+# Logging
+handler = logging.StreamHandler(sys.stdout)
+app.logger.handlers = []
+app.logger.addHandler(handler)
+app.logger.setLevel(logging.DEBUG)
 
 
 # Error handling
