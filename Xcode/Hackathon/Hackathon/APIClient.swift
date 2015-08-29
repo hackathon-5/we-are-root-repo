@@ -13,6 +13,8 @@ typealias APIClientCompletionBlock = ((success:Bool, error:String?, response:Any
 typealias APIClientJSONCompletionBlock = ((success:Bool, error:String?, response:JSON?) -> Void)
 
 class APIClient: NSObject {
+    
+    private static let HackathonServerAPIBase = NSURL(string: "http://hackme.me")!
  
     /**
     Send an API request to the Hackathon server.
@@ -60,5 +62,17 @@ class APIClient: NSObject {
                 completion?(success: false, error: error.localizedDescription, response: nil)
             }
         })
+    }
+    
+    /**
+    Convenience method for generating a URL to the Hackathon API service
+    
+    :param: path The relative path
+    
+    :returns: An NSURL representing the full URL of the API.
+    */
+    static func requestForPath(path: String) -> NSURL
+    {
+        return NSURL(string: path, relativeToURL: self.HackathonServerAPIBase)!
     }
 }
