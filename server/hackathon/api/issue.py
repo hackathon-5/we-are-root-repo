@@ -20,7 +20,7 @@ def create_issue():
     milestone_number = request.json.get('milestone_number')
     label_names = request.json.get('label_names')
 
-    assigned_to_user, milestone, label_list = None, NotSet, NotSet
+    assigned_to_user, milestone, label_list = NotSet, NotSet, NotSet
 
     if not repo or not title:
         abort(400)

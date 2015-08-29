@@ -6,6 +6,9 @@ import arrow
 from werkzeug.exceptions import default_exceptions, HTTPException
 from flask import Flask, g, request, jsonify, abort
 from flask.ext.sqlalchemy import SQLAlchemy
+from github import Github
+
+from hackathon.objects import Issue, Comment
 
 # Basic configuration
 app = Flask(__name__)
@@ -89,13 +92,79 @@ def process_notifications():
         last_push_unix = arrow.get(account.last_push).timestamp
         last_email_unix = arrow.get(account.last_email).timestamp
 
-        if last_email_unix < arrow.now().timestamp - 3600:
-            account.last_email = arrow.now().datetime
+        # Band-aid for being outside of request context
+        token = AccessToken.query.filter_by(account_id=account.id).first()
+        github_token = token.github_token
 
-        if last_push_unix < arrow.now().timestamp - 300:
+        if last_push_unix < arrow.now().timestamp - 90:
+            gh = Github(login_or_token=github_token, per_page=100)
+
+            all_issues = []
+            all_comments = []
+            for repo_id in account.watchlist:
+                repo = gh.get_repo(repo_id)
+                for issue in repo.get_issues(since=account.last_push):
+                    issue.repo = repo.full_name
+                    issue.unix_updated_at = arrow.get(issue.updated_at).timestamp
+                    issue.unix_created_at = arrow.get(issue.created_at).timestamp
+                    all_issues.append(issue)
+
+                    for comment in issue.get_comments():
+                        comment.repo = repo.full_name
+                        comment.issue_number = issue.number
+                        comment.unix_updated_at = arrow.get(comment.updated_at).timestamp
+                        comment.unix_created_at = arrow.get(comment.created_at).timestamp
+                        all_comments.append(comment)
+
+            all_issues.sort(key=lambda i: i.unix_updated_at, reverse=True)
+            all_comments.sort(key=lambda c: c.unix_updated_at, reverse=True)
+
+            all_comments = [a for a in all_comments if a.unix_updated_at > arrow.get(account.last_push).timestamp]
+
+            issues = Issue(many=True)
+            issues_result = issues.dump([r for r in all_issues])
+
+            comments = Comment(many=True)
+            comments_results = comments.dump([c for c in all_comments])
+
+            app.logger.info('There were {} updated issues and {} updated comments.'.format(len(issues_result.data),
+                                                                                           len(comments_results.data)))
             account.last_push = arrow.now().datetime
 
-        db.session.commit()
+        if last_email_unix < arrow.now().timestamp - 3600:
+            gh = Github(login_or_token=github_token, per_page=100)
+
+            all_issues = []
+            all_comments = []
+            for repo_id in account.watchlist:
+                repo = gh.get_repo(repo_id)
+                for issue in repo.get_issues(since=account.last_email):
+                    issue.repo = repo.full_name
+                    issue.unix_updated_at = arrow.get(issue.updated_at).timestamp
+                    issue.unix_created_at = arrow.get(issue.created_at).timestamp
+                    all_issues.append(issue)
+
+                    for comment in issue.get_comments():
+                        comment.repo = repo.full_name
+                        comment.issue_number = issue.number
+                        comment.unix_updated_at = arrow.get(comment.updated_at).timestamp
+                        comment.unix_created_at = arrow.get(comment.created_at).timestamp
+                        all_comments.append(comment)
+
+            all_issues.sort(key=lambda i: i.unix_updated_at, reverse=True)
+            all_comments.sort(key=lambda c: c.unix_updated_at, reverse=True)
+
+            all_comments = [a for a in all_comments if a.unix_updated_at < arrow.get(account.last_email).timestamp]
+
+            issues = Issue(many=True)
+            issues_result = issues.dump([r for r in all_issues])
+
+            comments = Comment(many=True)
+            comments_results = comments.dump([c for c in all_comments])
+            account.last_email = arrow.now().datetime
+
+        with app.app_context():
+            db.session.commit()
 
 # Run the recurring task
 process_notifications()

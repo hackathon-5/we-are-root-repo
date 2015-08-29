@@ -65,3 +65,13 @@ def update_push():
 def update_watchlist():
     new_watchlist = request.json.get('watchlist')
 
+    account = Account.query.filter_by(id=g.account_id).first()
+    account.watchlist = new_watchlist
+
+    db.session.commit()
+
+    rv = {
+        'watchlist': new_watchlist
+    }
+
+    return jsonify(rv)

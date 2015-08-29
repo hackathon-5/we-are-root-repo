@@ -2,6 +2,7 @@ from datetime import datetime
 from hackathon import db
 
 from sqlalchemy.ext.declarative import declared_attr
+from sqlalchemy.dialects.postgres import ARRAY
 
 
 class Base(db.Model):
@@ -22,6 +23,7 @@ class Account(Base):
     github_user = db.Column(db.String, unique=True)
     last_push = db.Column(db.DateTime)
     last_email = db.Column(db.DateTime)
+    watchlist = db.Column(ARRAY(db.String))
 
 
 class AccessToken(Base):
