@@ -37,13 +37,14 @@ class Issue(Schema):
     title = fields.Str()
     body = fields.Str()
     user = fields.Nested(User)
-    created_at = fields.DateTime()
-    updated_at = fields.DateTime()
+    created_at = fields.Integer(attribute='unix_created_at')
+    updated_at = fields.Integer(attribute='unix_updated_at')
 
 
 class Comment(Schema):
     id = fields.Integer()
     repo = fields.Str()
+    issue_number = fields.Integer()
     body = fields.Str()
-    created_at = fields.DateTime()
-    updated_at = fields.DateTime()
+    created_at = fields.Integer(attribute='unix_created_at')
+    updated_at = fields.Integer(attribute='unix_updated_at')
