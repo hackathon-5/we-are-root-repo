@@ -204,8 +204,23 @@ def process_notifications():
 
             comments = Comment(many=True)
             comments_results = comments.dump([c for c in all_comments])
-            account.last_email = arrow.now().datetime
 
+            num_comments = len(comments_results.data)
+            num_issues = len(issues_result.data)
+
+            if num_issues + num_comments >= 1:
+                issues_format = '<li>Issue #{}: {} ({})</li>\n'
+                issues_block = ''
+                for i in issues_result.data:
+                    issues_block += issues_format.format(i.number, i.title, arrow.get(i.updated_at).humanize())
+
+                send_mandrill_email(account.email, 'message-template', {
+                    'num_comments': num_comments,
+                    'num_issues': num_issues,
+                    'issues_block': issues_block
+                })
+
+                account.last_email = arrow.now().datetime
 
         with app.app_context():
             db.session.commit()
