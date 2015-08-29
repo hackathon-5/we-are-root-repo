@@ -119,7 +119,7 @@ def send_notification(account_id, message):
 # Recurring task -- it's going in here because we don't have a better place without Celery
 # Should run on server start and every five minutes
 def process_notifications():
-    app.logger.info('Running thread.')
+    app.logger.info('Running notification thread.')
 
     for account in Account.query.all():
         if not account.last_email:
@@ -128,71 +128,77 @@ def process_notifications():
         if not account.last_push:
             account.last_push = arrow.now().datetime
 
-        last_push_unix = arrow.get(account.last_push).timestamp
-        last_email_unix = arrow.get(account.last_email).timestamp
-
         # Band-aid for being outside of request context
         token = AccessToken.query.filter_by(account_id=account.id).first()
         github_token = token.github_token
 
-        if last_push_unix < arrow.now().timestamp - 30:
-            gh = Github(login_or_token=github_token, per_page=100)
+        timestamp_window = arrow.get(arrow.now().timestamp - 30).datetime
+        gh = Github(login_or_token=github_token, per_page=100)
 
-            all_issues = []
-            all_comments = []
-            for repo_id in account.watchlist:
-                repo = gh.get_repo(repo_id)
-                for issue in repo.get_issues(since=account.last_push):
-                    issue.repo = repo.full_name
-                    issue.unix_updated_at = arrow.get(issue.updated_at).timestamp
-                    issue.unix_created_at = arrow.get(issue.created_at).timestamp
-                    all_issues.append(issue)
+        all_issues = []
+        all_comments = []
+        for repo_id in account.watchlist:
+            repo = gh.get_repo(repo_id)
+            for issue in repo.get_issues(since=timestamp_window):
+                issue.repo = repo.full_name
+                issue.unix_updated_at = arrow.get(issue.updated_at).timestamp
+                issue.unix_created_at = arrow.get(issue.created_at).timestamp
+                all_issues.append(issue)
 
-                    for comment in issue.get_comments():
-                        comment.repo = repo.full_name
-                        comment.issue_number = issue.number
-                        comment.unix_updated_at = arrow.get(comment.updated_at).timestamp
-                        comment.unix_created_at = arrow.get(comment.created_at).timestamp
-                        all_comments.append(comment)
+                for comment in issue.get_comments():
+                    comment.repo = repo.full_name
+                    comment.issue_number = issue.number
+                    comment.unix_updated_at = arrow.get(comment.updated_at).timestamp
+                    comment.unix_created_at = arrow.get(comment.created_at).timestamp
+                    all_comments.append(comment)
 
-            all_issues.sort(key=lambda i: i.unix_updated_at, reverse=True)
-            all_comments.sort(key=lambda c: c.unix_updated_at, reverse=True)
+        all_issues.sort(key=lambda i: i.unix_updated_at, reverse=True)
+        all_comments.sort(key=lambda c: c.unix_updated_at, reverse=True)
 
-            all_comments = [a for a in all_comments if a.unix_updated_at > arrow.get(account.last_push).timestamp]
+        all_comments = [a for a in all_comments if a.unix_updated_at > arrow.get(account.last_push).timestamp]
 
-            issues = Issue(many=True)
-            issues_result = issues.dump([r for r in all_issues])
+        issues = Issue(many=True)
+        issues_result = issues.dump([r for r in all_issues])
 
-            comments = Comment(many=True)
-            comments_results = comments.dump([c for c in all_comments])
+        comments = Comment(many=True)
+        comments_results = comments.dump([c for c in all_comments])
 
-            message = 'There were {} updated issues and {} updated comments.'.format(len(issues_result.data),
-                                                                                     len(comments_results.data))
-            if len(comments_results.data) + len(issues_result.data) >= 1:
-                send_notification(account.id, message)
-                app.logger.info(message)
+        message = 'There were {} updated issues and {} updated comments.'.format(len(issues_result.data),
+                                                                                 len(comments_results.data))
+        if len(comments_results.data) + len(issues_result.data) >= 1:
+            send_notification(account.id, message)
+            app.logger.info(message)
 
-                account.last_push = arrow.now().datetime
+        account.last_push = arrow.now().datetime
 
-        if last_email_unix < arrow.now().timestamp - 3600:
-            gh = Github(login_or_token=github_token, per_page=100)
 
-            all_issues = []
-            all_comments = []
-            for repo_id in account.watchlist:
-                repo = gh.get_repo(repo_id)
-                for issue in repo.get_issues(since=account.last_email):
-                    issue.repo = repo.full_name
-                    issue.unix_updated_at = arrow.get(issue.updated_at).timestamp
-                    issue.unix_created_at = arrow.get(issue.created_at).timestamp
-                    all_issues.append(issue)
+def process_emails():
+    app.logger.info('Running email thread.')
 
-                    for comment in issue.get_comments():
-                        comment.repo = repo.full_name
-                        comment.issue_number = issue.number
-                        comment.unix_updated_at = arrow.get(comment.updated_at).timestamp
-                        comment.unix_created_at = arrow.get(comment.created_at).timestamp
-                        all_comments.append(comment)
+    for account in Account.query.all():
+        # Band-aid for being outside of request context
+        token = AccessToken.query.filter_by(account_id=account.id).first()
+        github_token = token.github_token
+
+        timestamp_window = arrow.get(arrow.now().timestamp - 3600).datetime
+        gh = Github(login_or_token=github_token, per_page=100)
+
+        all_issues = []
+        all_comments = []
+        for repo_id in account.watchlist:
+            repo = gh.get_repo(repo_id)
+            for issue in repo.get_issues(since=timestamp_window):
+                issue.repo = repo.full_name
+                issue.unix_updated_at = arrow.get(issue.updated_at).timestamp
+                issue.unix_created_at = arrow.get(issue.created_at).timestamp
+                all_issues.append(issue)
+
+                for comment in issue.get_comments():
+                    comment.repo = repo.full_name
+                    comment.issue_number = issue.number
+                    comment.unix_updated_at = arrow.get(comment.updated_at).timestamp
+                    comment.unix_created_at = arrow.get(comment.created_at).timestamp
+                    all_comments.append(comment)
 
             all_issues.sort(key=lambda i: i.unix_updated_at, reverse=True)
             all_comments.sort(key=lambda c: c.unix_updated_at, reverse=True)
@@ -211,24 +217,17 @@ def process_notifications():
             if num_issues + num_comments >= 1:
                 issues_format = '<li>Issue #{}: {} ({})</li>\n'
                 issues_block = ''
-                for i in issues_result.data:
+                for i in all_issues:
                     issues_block += issues_format.format(i.number, i.title, arrow.get(i.updated_at).humanize())
 
-                send_mandrill_email(account.email, 'message-template', {
+                send_mandrill_email('kelly@52inc.com', 'email-digest', {
                     'num_comments': num_comments,
                     'num_issues': num_issues,
                     'issues_block': issues_block
                 })
 
-                account.last_email = arrow.now().datetime
+                app.logger.info('sent an email.')
 
-        with app.app_context():
+            account.last_email = arrow.now().datetime
+            db.session.flush()
             db.session.commit()
-
-def process_notifications_thread():
-    while True:
-        process_notifications()
-        time.sleep(35)
-
-# Run the recurring task
-threading.Thread(target=process_notifications_thread).start()
