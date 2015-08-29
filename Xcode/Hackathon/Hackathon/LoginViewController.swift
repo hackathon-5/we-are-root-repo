@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import OAuthSwift
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +22,9 @@ class ViewController: UIViewController {
     }
 
 
+   @IBAction private func authorizeGithub()
+    {
+        SessionManager.sharedManager.beginOAuthGithubLogin()
+    }
 }
 

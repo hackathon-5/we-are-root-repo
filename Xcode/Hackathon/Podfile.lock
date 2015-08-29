@@ -1,0 +1,109 @@
+PODS:
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - DACircularProgress (2.3.1)
+  - GGLInstanceID (1.0.0):
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - Google/CloudMessaging (1.0.7):
+    - GGLInstanceID (~> 1.0)
+    - Google/Core
+    - GoogleCloudMessaging (~> 1.0)
+  - Google/Core (1.0.7):
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - GoogleCloudMessaging (1.0.3):
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.0)
+  - GoogleInterchangeUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.0)
+  - GoogleUtilities (1.0.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - IDMPhotoBrowser (1.7):
+    - AFNetworking
+    - DACircularProgress
+    - pop
+  - JLRoutes (1.5.2)
+  - KeychainAccess (1.2.1)
+  - NSDate-Extensions-iOS7 (1.0.1)
+  - NSTimer-Blocks (0.0.1)
+  - OAuthSwift (0.3.7)
+  - ObjectMapper (0.15)
+  - pop (1.0.7)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - SwiftyJSON (2.2.1)
+  - UIImage-ResizeMagick (0.0.1)
+
+DEPENDENCIES:
+  - Google/CloudMessaging
+  - IDMPhotoBrowser
+  - JLRoutes
+  - KeychainAccess
+  - NSDate-Extensions-iOS7 (from `https://github.com/HiTask/NSDate-Extensions.git`)
+  - NSTimer-Blocks (~> 0.0)
+  - OAuthSwift (~> 0.3)
+  - ObjectMapper
+  - SDWebImage (~> 3.7)
+  - SwiftyJSON (~> 2.2.0)
+  - UIImage-ResizeMagick
+
+EXTERNAL SOURCES:
+  NSDate-Extensions-iOS7:
+    :git: https://github.com/HiTask/NSDate-Extensions.git
+
+CHECKOUT OPTIONS:
+  NSDate-Extensions-iOS7:
+    :commit: c1f71711b37a07eb80cd7f4e2557d6cab268ebde
+    :git: https://github.com/HiTask/NSDate-Extensions.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  GGLInstanceID: 3f2a20acbb91408d45a5696b7722bf44cb410e0b
+  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  GoogleCloudMessaging: 0d64d357dd8db2b6f6a3bd63301b04dd556320f9
+  GoogleInterchangeUtilities: fe088bea8c936218e52324a004d279c4491b9d65
+  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
+  GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
+  GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
+  IDMPhotoBrowser: 1155caa03f8705b7943c074c26b55aadd43d71da
+  JLRoutes: fc36fd38ab476d5ac3a6a84b05be60e4b1a2bc81
+  KeychainAccess: 3d7922baf90762a976adb7f6030d74c1a4110a1d
+  NSDate-Extensions-iOS7: 8ff45f790879730314b847cb262936952989077e
+  NSTimer-Blocks: 88faf9aef5f250ead087f3f67ae642517083bf36
+  OAuthSwift: d5a96a1a92329e3b4bb63b682c3e4e89a8698dc8
+  ObjectMapper: 0656dc1c155825897e5acfcd25362c6b61786dcb
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  UIImage-ResizeMagick: f08c2d14d1e8a5f0b402185408785540562f2fe7
+
+COCOAPODS: 0.38.2
