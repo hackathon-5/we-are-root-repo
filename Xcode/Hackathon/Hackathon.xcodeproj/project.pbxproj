@@ -13,18 +13,7 @@
 		C6C081301B91348E00CB1956 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C0812E1B91348E00CB1956 /* Main.storyboard */; };
 		C6C081321B91348E00CB1956 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C081311B91348E00CB1956 /* Images.xcassets */; };
 		C6C081351B91348E00CB1956 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C081331B91348E00CB1956 /* LaunchScreen.xib */; };
-		C6C081411B91348E00CB1956 /* HackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081401B91348E00CB1956 /* HackathonTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C6C0813B1B91348E00CB1956 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C6C0811D1B91348E00CB1956 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C6C081241B91348E00CB1956;
-			remoteInfo = Hackathon;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		103C1B7F61E32A6EBD7BD7FC /* Pods_Hackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,9 +26,6 @@
 		C6C0812F1B91348E00CB1956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C6C081311B91348E00CB1956 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C6C081341B91348E00CB1956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		C6C0813A1B91348E00CB1956 /* HackathonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackathonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6C0813F1B91348E00CB1956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C6C081401B91348E00CB1956 /* HackathonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackathonTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,13 +34,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				826E09A8074742825B6C0FE5 /* Pods_Hackathon.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C6C081371B91348E00CB1956 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				C6C081271B91348E00CB1956 /* Hackathon */,
-				C6C0813D1B91348E00CB1956 /* HackathonTests */,
 				C6C081261B91348E00CB1956 /* Products */,
 				9CD3863A0DD3407BAAA2BB37 /* Pods */,
 				F665A9060C3E6469DF3212AB /* Frameworks */,
@@ -85,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				C6C081251B91348E00CB1956 /* Hackathon.app */,
-				C6C0813A1B91348E00CB1956 /* HackathonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,23 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				C6C081291B91348E00CB1956 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C6C0813D1B91348E00CB1956 /* HackathonTests */ = {
-			isa = PBXGroup;
-			children = (
-				C6C081401B91348E00CB1956 /* HackathonTests.swift */,
-				C6C0813E1B91348E00CB1956 /* Supporting Files */,
-			);
-			path = HackathonTests;
-			sourceTree = "<group>";
-		};
-		C6C0813E1B91348E00CB1956 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C6C0813F1B91348E00CB1956 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -159,24 +119,6 @@
 			productReference = C6C081251B91348E00CB1956 /* Hackathon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C6C081391B91348E00CB1956 /* HackathonTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C6C081471B91348E00CB1956 /* Build configuration list for PBXNativeTarget "HackathonTests" */;
-			buildPhases = (
-				C6C081361B91348E00CB1956 /* Sources */,
-				C6C081371B91348E00CB1956 /* Frameworks */,
-				C6C081381B91348E00CB1956 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C6C0813C1B91348E00CB1956 /* PBXTargetDependency */,
-			);
-			name = HackathonTests;
-			productName = HackathonTests;
-			productReference = C6C0813A1B91348E00CB1956 /* HackathonTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -188,10 +130,6 @@
 				TargetAttributes = {
 					C6C081241B91348E00CB1956 = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					C6C081391B91348E00CB1956 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = C6C081241B91348E00CB1956;
 					};
 				};
 			};
@@ -209,7 +147,6 @@
 			projectRoot = "";
 			targets = (
 				C6C081241B91348E00CB1956 /* Hackathon */,
-				C6C081391B91348E00CB1956 /* HackathonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -222,13 +159,6 @@
 				C6C081301B91348E00CB1956 /* Main.storyboard in Resources */,
 				C6C081351B91348E00CB1956 /* LaunchScreen.xib in Resources */,
 				C6C081321B91348E00CB1956 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C6C081381B91348E00CB1956 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,23 +222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C6C081361B91348E00CB1956 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C6C081411B91348E00CB1956 /* HackathonTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C6C0813C1B91348E00CB1956 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C6C081241B91348E00CB1956 /* Hackathon */;
-			targetProxy = C6C0813B1B91348E00CB1956 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C6C0812E1B91348E00CB1956 /* Main.storyboard */ = {
@@ -433,40 +347,6 @@
 			};
 			name = Release;
 		};
-		C6C081481B91348E00CB1956 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = HackathonTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hackathon.app/Hackathon";
-			};
-			name = Debug;
-		};
-		C6C081491B91348E00CB1956 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = HackathonTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hackathon.app/Hackathon";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -484,15 +364,6 @@
 			buildConfigurations = (
 				C6C081451B91348E00CB1956 /* Debug */,
 				C6C081461B91348E00CB1956 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C6C081471B91348E00CB1956 /* Build configuration list for PBXNativeTarget "HackathonTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C6C081481B91348E00CB1956 /* Debug */,
-				C6C081491B91348E00CB1956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
