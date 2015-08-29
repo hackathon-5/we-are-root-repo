@@ -35,8 +35,8 @@ class IssueImageEditorViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont(name: "SFUIText-Bold", size: 17.0)!], forState: .Normal)
         
-        self.drawingContainerView.layer.borderWidth = 4.0
-        self.drawingContainerView.layer.borderColor = UIColor(red: 29.0/255.0, green: 127.0/255.0, blue: 255.0/255.0, alpha: 1.0).CGColor
+//        self.drawingContainerView.layer.borderWidth = 4.0
+//        self.drawingContainerView.layer.borderColor = UIColor(red: 29.0/255.0, green: 127.0/255.0, blue: 255.0/255.0, alpha: 1.0).CGColor
     }
 
     override func didReceiveMemoryWarning() {

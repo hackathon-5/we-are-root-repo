@@ -69,13 +69,17 @@
 		C6C081E41B91E97200CB1956 /* IssueLabelEditorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081E31B91E97200CB1956 /* IssueLabelEditorTableViewController.swift */; };
 		C6C081E61B91E9C600CB1956 /* IssueMilestoneEditorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081E51B91E9C600CB1956 /* IssueMilestoneEditorTableViewController.swift */; };
 		C6C081E81B91EA2900CB1956 /* IssueCollaboratorsEditorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081E71B91EA2900CB1956 /* IssueCollaboratorsEditorTableViewController.swift */; };
+		C6C081EB1B92051F00CB1956 /* IssueViewerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081EA1B92051F00CB1956 /* IssueViewerTableViewController.swift */; };
+		C6C081ED1B92088200CB1956 /* IssueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081EC1B92088200CB1956 /* IssueResponse.swift */; };
+		C6C081EF1B920E7D00CB1956 /* FooterIssueMetricsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081EE1B920E7D00CB1956 /* FooterIssueMetricsTableViewCell.swift */; };
+		C6C081F21B921B4000CB1956 /* RespondToCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081F11B921B4000CB1956 /* RespondToCommentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		103C1B7F61E32A6EBD7BD7FC /* Pods_Hackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		748A6DD882FC3E116AFE887E /* Pods-Hackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackathon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hackathon/Pods-Hackathon.release.xcconfig"; sourceTree = "<group>"; };
 		BB46796662938B457BE76810 /* Pods-Hackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackathon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hackathon/Pods-Hackathon.debug.xcconfig"; sourceTree = "<group>"; };
-		C6C081251B91348E00CB1956 /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6C081251B91348E00CB1956 /* Repositron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Repositron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C081291B91348E00CB1956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6C0812A1B91348E00CB1956 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6C0812C1B91348E00CB1956 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +144,10 @@
 		C6C081E31B91E97200CB1956 /* IssueLabelEditorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueLabelEditorTableViewController.swift; sourceTree = "<group>"; };
 		C6C081E51B91E9C600CB1956 /* IssueMilestoneEditorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueMilestoneEditorTableViewController.swift; sourceTree = "<group>"; };
 		C6C081E71B91EA2900CB1956 /* IssueCollaboratorsEditorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueCollaboratorsEditorTableViewController.swift; sourceTree = "<group>"; };
+		C6C081EA1B92051F00CB1956 /* IssueViewerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewerTableViewController.swift; sourceTree = "<group>"; };
+		C6C081EC1B92088200CB1956 /* IssueResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueResponse.swift; sourceTree = "<group>"; };
+		C6C081EE1B920E7D00CB1956 /* FooterIssueMetricsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterIssueMetricsTableViewCell.swift; sourceTree = "<group>"; };
+		C6C081F11B921B4000CB1956 /* RespondToCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespondToCommentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +191,7 @@
 		C6C081261B91348E00CB1956 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C6C081251B91348E00CB1956 /* Hackathon.app */,
+				C6C081251B91348E00CB1956 /* Repositron.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +228,7 @@
 				C6C081761B91622800CB1956 /* Stream */,
 				C6C081D51B91CA4800CB1956 /* Create new issue */,
 				C6C081DA1B91D94F00CB1956 /* Issue Image Editor */,
+				C6C081E91B9204F900CB1956 /* Issue Viewer */,
 				C6C081791B91627100CB1956 /* Settings */,
 			);
 			name = "View Controllers";
@@ -420,6 +429,7 @@
 				C6C081CF1B91AF3600CB1956 /* StreamResponse.swift */,
 				C6C081DD1B91E71B00CB1956 /* CollaboratorsResponse.swift */,
 				C6C081E11B91E8A200CB1956 /* MilestoneResponse.swift */,
+				C6C081EC1B92088200CB1956 /* IssueResponse.swift */,
 			);
 			name = Responses;
 			sourceTree = "<group>";
@@ -450,6 +460,24 @@
 				C6C081DB1B91D96200CB1956 /* IssueImageEditorViewController.swift */,
 			);
 			name = "Issue Image Editor";
+			sourceTree = "<group>";
+		};
+		C6C081E91B9204F900CB1956 /* Issue Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081F01B921B0A00CB1956 /* Reply */,
+				C6C081EA1B92051F00CB1956 /* IssueViewerTableViewController.swift */,
+				C6C081EE1B920E7D00CB1956 /* FooterIssueMetricsTableViewCell.swift */,
+			);
+			name = "Issue Viewer";
+			sourceTree = "<group>";
+		};
+		C6C081F01B921B0A00CB1956 /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081F11B921B4000CB1956 /* RespondToCommentViewController.swift */,
+			);
+			name = Reply;
 			sourceTree = "<group>";
 		};
 		F665A9060C3E6469DF3212AB /* Frameworks */ = {
@@ -485,7 +513,7 @@
 			);
 			name = Hackathon;
 			productName = Hackathon;
-			productReference = C6C081251B91348E00CB1956 /* Hackathon.app */;
+			productReference = C6C081251B91348E00CB1956 /* Repositron.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -606,6 +634,7 @@
 			files = (
 				C6C081571B91383600CB1956 /* RelativeDateFormatter.swift in Sources */,
 				C6C081B71B918B0B00CB1956 /* RepoPickerTableViewController.swift in Sources */,
+				C6C081ED1B92088200CB1956 /* IssueResponse.swift in Sources */,
 				C6C081E81B91EA2900CB1956 /* IssueCollaboratorsEditorTableViewController.swift in Sources */,
 				C6C081781B91623E00CB1956 /* StreamTableViewController.swift in Sources */,
 				C6C081D71B91CA6400CB1956 /* NewIssueRepoPickerViewController.swift in Sources */,
@@ -613,9 +642,11 @@
 				C6C0812D1B91348E00CB1956 /* LoginViewController.swift in Sources */,
 				C6C081671B91454C00CB1956 /* SessionManager.swift in Sources */,
 				C6C081B91B918C2A00CB1956 /* BasicOrganization.swift in Sources */,
+				C6C081EB1B92051F00CB1956 /* IssueViewerTableViewController.swift in Sources */,
 				C6C081DE1B91E71B00CB1956 /* CollaboratorsResponse.swift in Sources */,
 				C6C081C31B91906E00CB1956 /* RepoPickerOrgModel.swift in Sources */,
 				C6C081B41B9189D200CB1956 /* RepoPickerTableViewCell.swift in Sources */,
+				C6C081F21B921B4000CB1956 /* RespondToCommentViewController.swift in Sources */,
 				C6C081CA1B91AB9300CB1956 /* Issue.swift in Sources */,
 				C6C081591B91386700CB1956 /* AppStateTransitioner.swift in Sources */,
 				C6C081CE1B91AE7500CB1956 /* Comment.swift in Sources */,
@@ -626,6 +657,7 @@
 				C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */,
 				C6C081691B914E9000CB1956 /* AppUser.swift in Sources */,
 				C6C0817B1B91628A00CB1956 /* SettingsTableViewController.swift in Sources */,
+				C6C081EF1B920E7D00CB1956 /* FooterIssueMetricsTableViewCell.swift in Sources */,
 				C6C081C11B918F5B00CB1956 /* RepositoryListResponse.swift in Sources */,
 				C6C081E41B91E97200CB1956 /* IssueLabelEditorTableViewController.swift in Sources */,
 				C6C0816C1B91535800CB1956 /* AppStyles.swift in Sources */,
@@ -750,12 +782,13 @@
 			baseConfigurationReference = BB46796662938B457BE76810 /* Pods-Hackathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Hackathon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG\"";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Repositron;
 				PROVISIONING_PROFILE = "31b274af-048c-40a6-9b12-8e30419a8e6f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hackathon/Hackathon-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -767,11 +800,12 @@
 			baseConfigurationReference = 748A6DD882FC3E116AFE887E /* Pods-Hackathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Hackathon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Repositron;
 				SWIFT_OBJC_BRIDGING_HEADER = "Hackathon/Hackathon-Bridging-Header.h";
 			};
 			name = Release;

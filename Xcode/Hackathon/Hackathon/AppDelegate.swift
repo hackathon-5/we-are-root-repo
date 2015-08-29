@@ -43,9 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         //Basic Notification Config...no onboarding to warn peeps.
-        let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+        SessionManager.sharedManager.promptNotifications()
         
         return true
     }
@@ -69,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             if token != nil{
                 NSLog("GCM Success: %@", token)
+                SessionManager.sharedManager.pushToken = token
             }
             else
             {
@@ -110,6 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        SessionManager.sharedManager.promptNotifications()
     }
 
     func applicationWillTerminate(application: UIApplication) {

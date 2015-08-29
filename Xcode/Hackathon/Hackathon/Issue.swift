@@ -45,6 +45,11 @@ class Issue: Mappable {
     
     var images: Array<NSURL>?
     
+    var labels: Array<String>?
+    
+    var milestone: Milestone?
+    
+    
     class func newInstance(map: Map) -> Mappable? {
         return Issue()
     }
@@ -60,6 +65,9 @@ class Issue: Mappable {
         body        <- map["body"]
         updatedAt   <- (map["updated_at"], DateTransform())
         assignee    <- map["assignee"]
+        labels      <- map["labels"]
+        milestone   <- map["milestone"]
+        
         
         if self.body != nil
         {
