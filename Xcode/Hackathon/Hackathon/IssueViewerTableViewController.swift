@@ -9,7 +9,7 @@
 import UIKit
 import IDMPhotoBrowser
 
-class IssueViewerTableViewController: UITableViewController, RespondToCommentDelegate {
+class IssueViewerTableViewController: UITableViewController, RespondToCommentDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, IssueImageEditorDelegate {
     
     var issue: Issue?
     
@@ -98,8 +98,100 @@ class IssueViewerTableViewController: UITableViewController, RespondToCommentDel
     
     func replyToIssue()
     {
-        self.performSegueWithIdentifier("RespondToIssue", sender: nil)
+        let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        actionsheet.addAction(UIAlertAction(title: "Add Photo", style: .Default, handler: { (action) -> Void in
+            
+            self.showCameraPicker()
+        }))
+        
+        actionsheet.addAction(UIAlertAction(title: "Add Comment", style: .Default, handler: { (action) -> Void in
+            
+            self.performSegueWithIdentifier("RespondToIssue", sender: nil)
+            
+        }))
+        
+        actionsheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        self.presentViewController(actionsheet, animated: true, completion: nil)
+        
     }
+    
+    @IBAction func showCameraPicker()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary)
+        {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePicker.delegate = self
+            
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Your device is not configured for photos.", message: nil, preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        //Ok, let's do some image swapping magic here...
+        
+        let snapshot = UIApplication.sharedApplication().delegate?.window??.snapshotViewAfterScreenUpdates(false)
+        
+        UIApplication.sharedApplication().delegate?.window??.addSubview(snapshot!)
+        
+        picker.dismissViewControllerAnimated(false, completion: nil)
+        
+        UIApplication.sharedApplication().delegate?.window??.bringSubviewToFront(snapshot!)
+        
+        self.performSegueWithIdentifier("IssueViewerToPhotoEditor", sender: image.fixOrientation())
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            snapshot?.alpha = 0.0
+            }) { (finished) -> Void in
+                snapshot?.removeFromSuperview()
+        }
+        
+    }
+    
+    func imageEditorDidFinishWithImage(image: UIImage) {
+        
+        
+        let spinny = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: spinny)
+        spinny.startAnimating()
+        
+        self.view.endEditing(true)
+        self.navigationController?.view.userInteractionEnabled = false
+        
+        SessionManager.sharedManager.submitNewGithubComment(self.repo!, number: self.issueNumber!, comment: "", images: [image]) { (success, error, response) -> Void in
+            
+            if !success
+            {
+                let alert = UIAlertController(title: "Network Error", message: error, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            else
+            {
+                self.reloadIssue()
+                
+                self.tableView.scrollRectToVisible(CGRectMake(0, self.tableView.contentSize.height, 5, 5), animated: false)
+            }
+            
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "iconReply"), style: .Plain, target: self, action: Selector("replyToIssue"))
+            self.navigationController?.view.userInteractionEnabled = true
+        }
+
+    }
+
+    
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -555,7 +647,14 @@ class IssueViewerTableViewController: UITableViewController, RespondToCommentDel
             destination.delegate = self
         }
         
+        if let navigation = segue.destinationViewController as? UINavigationController, destination = navigation.viewControllers.first as? IssueImageEditorViewController, image = sender as? UIImage, goingView = destination.view
+        {
+            destination.delegate = self
+            destination.contentImageView.image = image
+        }
+        
     }
+
     
     func responseWasSentSuccessfully(commentVC: RespondToCommentViewController) {
         self.reloadIssue()

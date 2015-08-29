@@ -985,6 +985,7 @@
                     <size key="freeformSize" width="600" height="900"/>
                     <connections>
                         <segue destination="FGm-7x-ETy" kind="presentation" identifier="RespondToIssue" modalPresentationStyle="overFullScreen" id="rXI-wr-AtU"/>
+                        <segue destination="pGA-TL-eUc" kind="presentation" identifier="IssueViewerToPhotoEditor" modalPresentationStyle="overFullScreen" id="G5U-z4-LHf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Prs-1X-Vvn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1779,4 +1780,7 @@
         <image name="iconTabSettingsOutlined" width="30" height="30"/>
         <image name="iconTabStreamOutlined" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="G5U-z4-LHf"/>
+    </inferredMetricsTieBreakers>
 </document>
