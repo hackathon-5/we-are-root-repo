@@ -25,6 +25,12 @@ class SessionManager: NSObject {
     var currentUser: AppUser?
     var accessToken: String?
     
+    var selectedReposForStream: Array<String> = Array<String>() {
+        didSet {
+            self.saveSession()
+        }
+    }
+    
     override init() {
         
         super.init()
@@ -39,6 +45,15 @@ class SessionManager: NSObject {
             //We have credentials, let's restore the session!
             self.accessToken = token
             self.currentUser = Mapper<AppUser>().map(userJSON)
+            
+            if let streamData = self.keychain["selectedReposForStream"], streamRecovery = NSJSONSerialization.JSONObjectWithData(streamData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!, options: .allZeros, error: nil) as? Array<String>
+            {
+                self.selectedReposForStream = streamRecovery
+            }
+            else
+            {
+                self.selectedReposForStream = Array<String>()
+            }
         }
     }
     
@@ -49,6 +64,7 @@ class SessionManager: NSObject {
             //Let's save the session
             self.keychain["accessToken"] = self.accessToken
             self.keychain["userJSON"] = Mapper().toJSONString(self.currentUser!, prettyPrint: false)
+            self.keychain["selectedReposForStream"] = NSString(data: NSJSONSerialization.dataWithJSONObject(self.selectedReposForStream, options: .allZeros, error: nil)!, encoding: NSUTF8StringEncoding) as? String
         }
     }
     
@@ -66,6 +82,7 @@ class SessionManager: NSObject {
     {
         self.keychain.remove("accessToken")
         self.keychain.remove("userJSON")
+        self.keychain.remove("selectedReposForStream")
     }
     
     /**
@@ -133,5 +150,38 @@ class SessionManager: NSObject {
         }
     }
     
+    /**
+    Retrieve a list of repositories and organizations for the current user
     
+    :param: completion The completion block to call when done.
+    */
+    func loadListOfRepositories(completion: APIClientCompletionBlock?)
+    {
+        var request = NSMutableURLRequest(URL: APIClient.requestForPath("/repo/list_all"))
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if success
+                {
+                    if let userJSON = response
+                    {
+                        var repoList = Mapper<RepositoryListResponse>().map(userJSON.dictionaryObject)
+                        
+                        completion?(success: true, error: nil, response: repoList)
+                    }
+                    else
+                    {
+                        completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                    }
+                }
+                else
+                {
+                    completion?(success: false, error: error, response: nil)
+                }
+            })
+        })
+
+    }
 }

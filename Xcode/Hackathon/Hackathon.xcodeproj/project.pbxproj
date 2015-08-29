@@ -45,6 +45,15 @@
 		C6C081AA1B916F9F00CB1956 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6C081951B916F9F00CB1956 /* SF-UI-Text-Semibold.otf */; };
 		C6C081AB1B916F9F00CB1956 /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6C081961B916F9F00CB1956 /* SF-UI-Text-SemiboldItalic.otf */; };
 		C6C081B11B91837600CB1956 /* StreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081B01B91837600CB1956 /* StreamTableViewCell.swift */; };
+		C6C081B41B9189D200CB1956 /* RepoPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081B31B9189D200CB1956 /* RepoPickerTableViewCell.swift */; };
+		C6C081B71B918B0B00CB1956 /* RepoPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081B61B918B0B00CB1956 /* RepoPickerTableViewController.swift */; };
+		C6C081B91B918C2A00CB1956 /* BasicOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081B81B918C2A00CB1956 /* BasicOrganization.swift */; };
+		C6C081BD1B918E8100CB1956 /* BasicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081BC1B918E8100CB1956 /* BasicRepository.swift */; };
+		C6C081BF1B918ECD00CB1956 /* BasicRepositoryOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081BE1B918ECD00CB1956 /* BasicRepositoryOwner.swift */; };
+		C6C081C11B918F5B00CB1956 /* RepositoryListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081C01B918F5B00CB1956 /* RepositoryListResponse.swift */; };
+		C6C081C31B91906E00CB1956 /* RepoPickerOrgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081C21B91906E00CB1956 /* RepoPickerOrgModel.swift */; };
+		C6C081C61B9196CF00CB1956 /* RepoPickerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C081C51B9196CF00CB1956 /* RepoPickerHeaderView.xib */; };
+		C6C081C81B91973D00CB1956 /* RepoPickerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081C71B91973D00CB1956 /* RepoPickerHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +101,15 @@
 		C6C081951B916F9F00CB1956 /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		C6C081961B916F9F00CB1956 /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		C6C081B01B91837600CB1956 /* StreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamTableViewCell.swift; sourceTree = "<group>"; };
+		C6C081B31B9189D200CB1956 /* RepoPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoPickerTableViewCell.swift; sourceTree = "<group>"; };
+		C6C081B61B918B0B00CB1956 /* RepoPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoPickerTableViewController.swift; sourceTree = "<group>"; };
+		C6C081B81B918C2A00CB1956 /* BasicOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicOrganization.swift; sourceTree = "<group>"; };
+		C6C081BC1B918E8100CB1956 /* BasicRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicRepository.swift; sourceTree = "<group>"; };
+		C6C081BE1B918ECD00CB1956 /* BasicRepositoryOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicRepositoryOwner.swift; sourceTree = "<group>"; };
+		C6C081C01B918F5B00CB1956 /* RepositoryListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryListResponse.swift; sourceTree = "<group>"; };
+		C6C081C21B91906E00CB1956 /* RepoPickerOrgModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoPickerOrgModel.swift; sourceTree = "<group>"; };
+		C6C081C51B9196CF00CB1956 /* RepoPickerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoPickerHeaderView.xib; sourceTree = "<group>"; };
+		C6C081C71B91973D00CB1956 /* RepoPickerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoPickerHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +214,8 @@
 		C6C0814D1B9135C800CB1956 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				C6C081681B914E9000CB1956 /* AppUser.swift */,
+				C6C081BB1B918C3600CB1956 /* Responses */,
+				C6C081BA1B918C2E00CB1956 /* Data */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -265,6 +284,7 @@
 		C6C081761B91622800CB1956 /* Stream */ = {
 			isa = PBXGroup;
 			children = (
+				C6C081B21B9189BE00CB1956 /* Repo Picker */,
 				C6C081AF1B91836200CB1956 /* StreamCell */,
 				C6C0817C1B916E2500CB1956 /* Dropdown Title */,
 				C6C081771B91623E00CB1956 /* StreamTableViewController.swift */,
@@ -322,6 +342,53 @@
 				C6C081B01B91837600CB1956 /* StreamTableViewCell.swift */,
 			);
 			name = StreamCell;
+			sourceTree = "<group>";
+		};
+		C6C081B21B9189BE00CB1956 /* Repo Picker */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081C41B91930A00CB1956 /* Data Model */,
+				C6C081B51B918AEF00CB1956 /* Cells */,
+				C6C081B61B918B0B00CB1956 /* RepoPickerTableViewController.swift */,
+			);
+			name = "Repo Picker";
+			sourceTree = "<group>";
+		};
+		C6C081B51B918AEF00CB1956 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081B31B9189D200CB1956 /* RepoPickerTableViewCell.swift */,
+				C6C081C51B9196CF00CB1956 /* RepoPickerHeaderView.xib */,
+				C6C081C71B91973D00CB1956 /* RepoPickerHeaderView.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		C6C081BA1B918C2E00CB1956 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081681B914E9000CB1956 /* AppUser.swift */,
+				C6C081B81B918C2A00CB1956 /* BasicOrganization.swift */,
+				C6C081BC1B918E8100CB1956 /* BasicRepository.swift */,
+				C6C081BE1B918ECD00CB1956 /* BasicRepositoryOwner.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		C6C081BB1B918C3600CB1956 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081C01B918F5B00CB1956 /* RepositoryListResponse.swift */,
+			);
+			name = Responses;
+			sourceTree = "<group>";
+		};
+		C6C081C41B91930A00CB1956 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081C21B91906E00CB1956 /* RepoPickerOrgModel.swift */,
+			);
+			name = "Data Model";
 			sourceTree = "<group>";
 		};
 		F665A9060C3E6469DF3212AB /* Frameworks */ = {
@@ -414,6 +481,7 @@
 				C6C081321B91348E00CB1956 /* Images.xcassets in Resources */,
 				C6C081A01B916F9F00CB1956 /* SF-UI-Text-Bold.otf in Resources */,
 				C6C081A91B916F9F00CB1956 /* SF-UI-Text-RegularItalic.otf in Resources */,
+				C6C081C61B9196CF00CB1956 /* RepoPickerHeaderView.xib in Resources */,
 				C6C081A51B916F9F00CB1956 /* SF-UI-Text-LightItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,18 +542,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6C081571B91383600CB1956 /* RelativeDateFormatter.swift in Sources */,
+				C6C081B71B918B0B00CB1956 /* RepoPickerTableViewController.swift in Sources */,
 				C6C081781B91623E00CB1956 /* StreamTableViewController.swift in Sources */,
 				C6C0812D1B91348E00CB1956 /* LoginViewController.swift in Sources */,
 				C6C081671B91454C00CB1956 /* SessionManager.swift in Sources */,
+				C6C081B91B918C2A00CB1956 /* BasicOrganization.swift in Sources */,
+				C6C081C31B91906E00CB1956 /* RepoPickerOrgModel.swift in Sources */,
+				C6C081B41B9189D200CB1956 /* RepoPickerTableViewCell.swift in Sources */,
 				C6C081591B91386700CB1956 /* AppStateTransitioner.swift in Sources */,
+				C6C081BD1B918E8100CB1956 /* BasicRepository.swift in Sources */,
 				C6C081B11B91837600CB1956 /* StreamTableViewCell.swift in Sources */,
 				C6C0812B1B91348E00CB1956 /* AppDelegate.swift in Sources */,
 				C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */,
 				C6C081691B914E9000CB1956 /* AppUser.swift in Sources */,
 				C6C0817B1B91628A00CB1956 /* SettingsTableViewController.swift in Sources */,
+				C6C081C11B918F5B00CB1956 /* RepositoryListResponse.swift in Sources */,
 				C6C0816C1B91535800CB1956 /* AppStyles.swift in Sources */,
 				C6C081751B9161A700CB1956 /* TabbarViewController.swift in Sources */,
 				C6C0817E1B916E4100CB1956 /* DropdownTitleView.swift in Sources */,
+				C6C081C81B91973D00CB1956 /* RepoPickerHeaderView.swift in Sources */,
+				C6C081BF1B918ECD00CB1956 /* BasicRepositoryOwner.swift in Sources */,
 				C6C0816F1B9156A100CB1956 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

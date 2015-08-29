@@ -42,8 +42,9 @@ class StreamTableViewController: UITableViewController, DropdownTitleViewDelegat
 
     func dropDownTitleViewWasSelected(dropdown: DropdownTitleView) {
         //Segue stream selection
-        
+        self.performSegueWithIdentifier("StreamChooseRepos", sender: nil)
     }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
