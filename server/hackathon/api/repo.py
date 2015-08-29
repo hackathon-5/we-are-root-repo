@@ -1,3 +1,5 @@
+import arrow
+
 from flask import Blueprint, jsonify, g, current_app, abort, request
 from github import Github
 
@@ -29,6 +31,14 @@ def get_milestones():
 
     gh = Github(login_or_token=g.github_token, per_page=100)
     gh_repo = gh.get_repo(repo)
+
+    all_milestones = []
+    for r in gh_repo.get_milestones():
+        r.unix_due_on = arrow.get(r.due_on).timestamp
+        r.unix_created_at = arrow.get(r.created_at).timestamp
+        r.unix_updated_at = arrow.get(r.updated_at).timestamp
+
+        all_milestones.append(r)
 
     user_milestones = Milestone(many=True)
     milestones_result = user_milestones.dump([r for r in gh_repo.get_milestones()])
