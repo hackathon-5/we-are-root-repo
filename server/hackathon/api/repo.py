@@ -41,7 +41,7 @@ def get_milestones():
         all_milestones.append(r)
 
     user_milestones = Milestone(many=True)
-    milestones_result = user_milestones.dump([r for r in gh_repo.get_milestones()])
+    milestones_result = user_milestones.dump([r for r in all_milestones])
 
     return jsonify(milestones=milestones_result.data)
 
