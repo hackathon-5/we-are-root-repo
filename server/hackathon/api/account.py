@@ -59,3 +59,9 @@ def update_push():
     }
 
     return jsonify(rv)
+
+
+@account_bp.route('/update_watchlist', methods=['POST'])
+def update_watchlist():
+    new_watchlist = request.json.get('watchlist')
+

@@ -3,7 +3,6 @@ import arrow
 from flask import Blueprint, jsonify, g, current_app, abort, request
 from github import Github
 
-from hackathon.models import Account, WatchedRepo, db
 from hackathon.objects import Repo, Organization, Issue, Comment
 
 stream_bp = Blueprint('stream', __name__, url_prefix='/stream')

@@ -33,13 +33,3 @@ class AccessToken(Base):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
 
     account = db.relationship('Account', backref=db.backref('access_tokens', lazy='dynamic'))
-
-
-class WatchedRepo(Base):
-    __tablename__ = 'watched_repo'
-
-    repo_id = db.Column(db.Integer)
-    notification_preference = db.Column(db.String)
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
-
-    account = db.relationship('Account', backref=db.backref('watched_repos', lazy='dynamic'))
