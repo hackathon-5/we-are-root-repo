@@ -10,6 +10,7 @@ import UIKit
 import OAuthSwift
 import KeychainAccess
 import ObjectMapper
+import SwiftyJSON
 
 let kHackathonSessionManagerOAuthSuccess = "kHackathonSessionManagerOAuthSuccess"
 let kHackathonSessionManagerOAuthFailure = "kHackathonSessionManagerOAuthFailure"
@@ -77,6 +78,7 @@ class SessionManager: NSObject {
         oauthswift.authorizeWithCallbackURL(NSURL(string: "weAreRootApp://oauth-callback/github")!, scope: "user,public_repo,repo,repo:status,notifications,read:repo_hook,write:repo_hook,admin:repo_hook,read:org", state: NSUUID().UUIDString, params: Dictionary<String,String>(), success: { (credential, response, parameters) -> Void in
             
             NSLog("OAuthSwift Success: %@", credential)
+            NSLog("OAuthToken: %@", credential.oauth_token)
             
             //Exchange with server for local token
             
@@ -89,4 +91,6 @@ class SessionManager: NSObject {
                 NSNotificationCenter.defaultCenter().postNotificationName(kHackathonSessionManagerOAuthFailure, object: nil)
         }
     }
+    
+    
 }

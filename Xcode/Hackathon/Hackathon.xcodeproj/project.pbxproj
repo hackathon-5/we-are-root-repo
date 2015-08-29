@@ -24,6 +24,8 @@
 		C6C081651B913DE000CB1956 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C081641B913DE000CB1956 /* QuartzCore.framework */; };
 		C6C081671B91454C00CB1956 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081661B91454C00CB1956 /* SessionManager.swift */; };
 		C6C081691B914E9000CB1956 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081681B914E9000CB1956 /* User.swift */; };
+		C6C0816C1B91535800CB1956 /* AppStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C0816B1B91535800CB1956 /* AppStyles.swift */; };
+		C6C0816F1B9156A100CB1956 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C0816E1B9156A100CB1956 /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		C6C081641B913DE000CB1956 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C6C081661B91454C00CB1956 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		C6C081681B914E9000CB1956 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C6C0816B1B91535800CB1956 /* AppStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStyles.swift; sourceTree = "<group>"; };
+		C6C0816E1B9156A100CB1956 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,8 +144,9 @@
 		C6C0814C1B9135BD00CB1956 /* Session Manager */ = {
 			isa = PBXGroup;
 			children = (
-				C6C0814D1B9135C800CB1956 /* Data Models */,
 				C6C081661B91454C00CB1956 /* SessionManager.swift */,
+				C6C0816D1B91568E00CB1956 /* Networking */,
+				C6C0814D1B9135C800CB1956 /* Data Models */,
 			);
 			name = "Session Manager";
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 		C6C0814E1B9135D000CB1956 /* Storyboards / UI */ = {
 			isa = PBXGroup;
 			children = (
+				C6C0816A1B91534700CB1956 /* Colors */,
 				C6C081581B91386700CB1956 /* AppStateTransitioner.swift */,
 				C6C0812E1B91348E00CB1956 /* Login.storyboard */,
 				C6C081331B91348E00CB1956 /* LaunchScreen.xib */,
@@ -179,6 +185,22 @@
 				C6C081561B91383600CB1956 /* RelativeDateFormatter.swift */,
 			);
 			name = "Relative Date Formatter";
+			sourceTree = "<group>";
+		};
+		C6C0816A1B91534700CB1956 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				C6C0816B1B91535800CB1956 /* AppStyles.swift */,
+			);
+			name = Colors;
+			sourceTree = "<group>";
+		};
+		C6C0816D1B91568E00CB1956 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C6C0816E1B9156A100CB1956 /* APIClient.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		F665A9060C3E6469DF3212AB /* Frameworks */ = {
@@ -323,6 +345,8 @@
 				C6C0812B1B91348E00CB1956 /* AppDelegate.swift in Sources */,
 				C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */,
 				C6C081691B914E9000CB1956 /* User.swift in Sources */,
+				C6C0816C1B91535800CB1956 /* AppStyles.swift in Sources */,
+				C6C0816F1B9156A100CB1956 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
