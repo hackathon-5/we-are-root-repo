@@ -1,13 +1,16 @@
 import logging
 import sys
 import threading
+import time
 import arrow
+import mandrill
 
 from werkzeug.exceptions import default_exceptions, HTTPException
 from flask import Flask, g, request, jsonify, abort
 from flask.ext.sqlalchemy import SQLAlchemy
 from github import Github
 
+from hackathon.utils import send_message
 from hackathon.objects import Issue, Comment
 
 # Basic configuration
@@ -76,10 +79,46 @@ for bp in blueprints:
 
 db.create_all()
 
+
+def send_mandrill_email(recipient, template_name, global_merge_vars):
+    """Send email using Mandrill template"""
+
+    mandrill_client = mandrill.Mandrill(app.config['MANDRILL_KEY'])
+    template_content = []
+    message = {
+        'from_email': 'noreply@repositron.52inc.com',
+        'from_name': 'Repositron',
+        'global_merge_vars': [],
+        'to': [{
+            'email': recipient
+        }]
+    }
+
+    for k, v in global_merge_vars.items():
+        message['global_merge_vars'].append({'name': k, 'content': v})
+
+    mandrill_client.messages.send_template(template_name=template_name,
+                                           template_content=template_content,
+                                           message=message)
+
+
+def send_notification(account_id, message):
+    with app.app_context():
+        api_key = app.config['GCM_API_KEY']
+        tokens = AccessToken.query.filter_by(account_id=account_id).distinct(AccessToken.push_token).all()
+
+    notification = {
+        'title': 'GitHub Activity',
+        'body': message
+    }
+
+    for token in tokens:
+        if token.push_token:
+            send_message(api_key, token.push_token, notification=notification)
+
 # Recurring task -- it's going in here because we don't have a better place without Celery
 # Should run on server start and every five minutes
 def process_notifications():
-    threading.Timer(60.0, process_notifications).start()
     app.logger.info('Running thread.')
 
     for account in Account.query.all():
@@ -96,7 +135,7 @@ def process_notifications():
         token = AccessToken.query.filter_by(account_id=account.id).first()
         github_token = token.github_token
 
-        if last_push_unix < arrow.now().timestamp - 90:
+        if last_push_unix < arrow.now().timestamp - 30:
             gh = Github(login_or_token=github_token, per_page=100)
 
             all_issues = []
@@ -127,9 +166,13 @@ def process_notifications():
             comments = Comment(many=True)
             comments_results = comments.dump([c for c in all_comments])
 
-            app.logger.info('There were {} updated issues and {} updated comments.'.format(len(issues_result.data),
-                                                                                           len(comments_results.data)))
-            account.last_push = arrow.now().datetime
+            message = 'There were {} updated issues and {} updated comments.'.format(len(issues_result.data),
+                                                                                     len(comments_results.data))
+            if len(comments_results.data) + len(issues_result.data) >= 1:
+                send_notification(account.id, message)
+                app.logger.info(message)
+
+                account.last_push = arrow.now().datetime
 
         if last_email_unix < arrow.now().timestamp - 3600:
             gh = Github(login_or_token=github_token, per_page=100)
@@ -163,8 +206,14 @@ def process_notifications():
             comments_results = comments.dump([c for c in all_comments])
             account.last_email = arrow.now().datetime
 
+
         with app.app_context():
             db.session.commit()
 
+def process_notifications_thread():
+    while True:
+        process_notifications()
+        time.sleep(35)
+
 # Run the recurring task
-process_notifications()
+threading.Thread(target=process_notifications_thread).start()
