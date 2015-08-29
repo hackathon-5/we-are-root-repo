@@ -50,3 +50,16 @@ class Comment(Schema):
     user = fields.Nested(User)
     created_at = fields.Integer(attribute='unix_created_at')
     updated_at = fields.Integer(attribute='unix_updated_at')
+
+
+class Milestone(Schema):
+    id = fields.Integer()
+    description = fields.Str()
+    creator = fields.Nested(User)
+    due_on = fields.Integer(attribute='unix_due_on')
+    created_at = fields.Integer(attribute='unix_created_at')
+    updated_at = fields.Integer(attribute='unix_updated_at')
+
+
+class Label(Schema):
+    name = fields.Str()
