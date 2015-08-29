@@ -6,3 +6,5 @@ gunicorn
 requests
 arrow
 PyGithub
+marshmallow
+mandrill

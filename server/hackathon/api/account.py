@@ -42,3 +42,36 @@ def create_account():
     }
 
     return jsonify(rv)
+
+
+@account_bp.route('/update_push', methods=['POST'])
+def update_push():
+    new_token = request.json.get('push_token')
+
+    access_token = AccessToken.query.filter_by(access_token=g.access_token).first()
+    access_token.push_token = new_token
+
+    db.session.commit()
+
+    rv = {
+        'name': g.name,
+        'access_token': access_token.access_token
+    }
+
+    return jsonify(rv)
+
+
+@account_bp.route('/update_watchlist', methods=['POST'])
+def update_watchlist():
+    new_watchlist = request.json.get('watchlist')
+
+    account = Account.query.filter_by(id=g.account_id).first()
+    account.watchlist = new_watchlist
+
+    db.session.commit()
+
+    rv = {
+        'watchlist': new_watchlist
+    }
+
+    return jsonify(rv)
