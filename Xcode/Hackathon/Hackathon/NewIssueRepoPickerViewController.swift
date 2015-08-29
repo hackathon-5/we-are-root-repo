@@ -1,5 +1,5 @@
 //
-//  RepoPickerTableViewController.swift
+//  NewIssueRepoPickerViewController.swift
 //  Hackathon
 //
 //  Created by Brendan Lee on 8/29/15.
@@ -8,21 +8,13 @@
 
 import UIKit
 
-protocol RepoPickerTableViewDelegate {
-    func repoPickerIsExisting(picker: RepoPickerTableViewController)
-}
-
-class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewIssueRepoPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var organizationList: Array<RepoPickerOrgModel>? {
         didSet {
             self.tableView.reloadData()
         }
     }
-    
-    var selectedRepos: Array<String> = Array<String>()
-    
-    var pickerDelegate: RepoPickerTableViewDelegate?
     
     @IBOutlet var tableView: UITableView!
     
@@ -37,6 +29,8 @@ class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITa
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        self.reloadRepositoryList()
+        
         self.view.backgroundColor = UIColor.clearColor()
         self.tableView.backgroundColor = UIColor.clearColor()
         
@@ -45,19 +39,15 @@ class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITa
         self.tableView.registerNib(UINib(nibName: "RepoPickerHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RepoPickerHeaderView")
         
         self.tableView.tintColor = UIColor(red: 59.0/255.0, green: 132.0/255.0, blue: 227.0/255.0, alpha: 1.0)
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Select All", style: .Plain, target: self, action: Selector("selectAllRepos"))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: Selector("closeScreen"))
-        
-        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont(name: "SFUIText-Bold", size: 17.0)!], forState: .Normal)
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Done, target: self, action: Selector("closeScreen"))
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.view.backgroundColor = UIColor.clearColor()
-        
-        self.reloadRepositoryList()
     }
     
     override func didReceiveMemoryWarning() {
@@ -65,44 +55,8 @@ class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITa
         // Dispose of any resources that can be recreated.
     }
     
-    func selectAllRepos()
-    {
-        var allSelected = Array<String>()
-        
-        if let organizationList = self.organizationList
-        {
-            for org in organizationList
-            {
-                for repo in org.repositories
-                {
-                    allSelected.append(repo.name!)
-                }
-            }
-        }
-        
-        self.selectedRepos = allSelected
-        SessionManager.sharedManager.selectedReposForStream = allSelected
-        
-        self.tableView.reloadData()
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Clear All", style: .Plain, target: self, action: Selector("clearAllRepos"))
-    }
-    
-    func clearAllRepos()
-    {
-        var noneSelected = Array<String>()
-
-        self.selectedRepos = noneSelected
-        SessionManager.sharedManager.selectedReposForStream = noneSelected
-        
-        self.tableView.reloadData()
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Select All", style: .Plain, target: self, action: Selector("selectAllRepos"))
-    }
-    
     func closeScreen()
     {
-        self.pickerDelegate?.repoPickerIsExisting(self)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -178,7 +132,6 @@ class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITa
                     
                     
                     self.organizationList = activeRepos
-                    self.reloadSelectedRepos()
                 }
                 
             }
@@ -190,12 +143,6 @@ class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITa
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
-    }
-    
-    private func reloadSelectedRepos()
-    {
-        self.selectedRepos = SessionManager.sharedManager.selectedReposForStream
-        self.tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -236,15 +183,8 @@ class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITa
             let currentRepo = organizations[indexPath.section].repositories[indexPath.row]
             
             cell.contentLabel.text = currentRepo.name?.componentsSeparatedByString("/").last
-            
-            if self.isStringInSelectedRepos(currentRepo.name!)
-            {
-                cell.accessoryType = .Checkmark
-            }
-            else
-            {
-                cell.accessoryType = .None
-            }
+  
+            cell.accessoryType = .None
         }
         else
         {
@@ -275,51 +215,23 @@ class RepoPickerTableViewController: UIViewController, UITableViewDelegate, UITa
         return headerView
     }
     
-    func isStringInSelectedRepos(string:String) -> Bool
-    {
-        for repo in self.selectedRepos
-        {
-            if repo.lowercaseString == string.lowercaseString
-            {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if let organizations = self.organizationList
         {
             let currentRepo = organizations[indexPath.section].repositories[indexPath.row]
-
-            if self.isStringInSelectedRepos(currentRepo.name!)
-            {
-                //Remove it!
-                self.selectedRepos = self.selectedRepos.filter() { $0 != currentRepo.name }
-                
-                SessionManager.sharedManager.selectedReposForStream = self.selectedRepos
-                
-                var cell: RepoPickerTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RepoPickerTableViewCell
-                
-                cell.accessoryType = .None
-                
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Select All", style: .Plain, target: self, action: Selector("selectAllRepos"))
-            }
-            else
-            {
-                self.selectedRepos.append(currentRepo.name!)
-                
-                SessionManager.sharedManager.selectedReposForStream = self.selectedRepos
-                
-                var cell: RepoPickerTableViewCell = tableView.cellForRowAtIndexPath(indexPath) as! RepoPickerTableViewCell
-                
-                cell.accessoryType = .Checkmark
-                
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Select All", style: .Plain, target: self, action: Selector("selectAllRepos"))
-            }
+            
+            self.performSegueWithIdentifier("CreateIssueStepTwo", sender: currentRepo)
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let destination = segue.destinationViewController as? NewIssueCreatorViewController, repo = sender as? BasicRepository
+        {
+            destination.repoData = repo
+        }
+        
     }
 }

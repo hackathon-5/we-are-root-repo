@@ -184,4 +184,262 @@ class SessionManager: NSObject {
         })
 
     }
+    
+    func loadStreamForCurrentPreferences(completion: APIClientCompletionBlock?)
+    {
+        var requestPOSTParams = ["repos" : self.selectedReposForStream]
+        
+        var error: NSError?
+        
+        var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+        
+        if error == nil
+        {
+            var request = NSMutableURLRequest(URL: APIClient.requestForPath("/stream/"))
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "POST"
+            request.HTTPBody = requestBody
+            
+            APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if success
+                    {
+                        if let userJSON = response
+                        {
+                            var repoList = Mapper<StreamResponse>().map(userJSON.dictionaryObject)
+                            
+                            completion?(success: true, error: nil, response: repoList)
+                        }
+                        else
+                        {
+                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                        }
+                    }
+                    else
+                    {
+                        completion?(success: false, error: error, response: nil)
+                    }
+                })
+            })
+        }
+        else
+        {
+            completion?(success: false, error: error?.localizedDescription, response: nil)
+        }
+    }
+    
+    func loadLabelsForRepo(repository:String, completion: APIClientCompletionBlock?)
+    {
+        var requestPOSTParams = ["repo" : repository]
+        
+        var error: NSError?
+        
+        var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+        
+        if error == nil
+        {
+            var request = NSMutableURLRequest(URL: APIClient.requestForPath("/repo/labels"))
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "POST"
+            request.HTTPBody = requestBody
+            
+            APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if success
+                    {
+                        if let userJSON = response
+                        {
+                            completion?(success: true, error: nil, response: userJSON["labels"].arrayObject)
+                        }
+                        else
+                        {
+                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                        }
+                    }
+                    else
+                    {
+                        completion?(success: false, error: error, response: nil)
+                    }
+                })
+            })
+        }
+        else
+        {
+            completion?(success: false, error: error?.localizedDescription, response: nil)
+        }
+    }
+    
+    func loadCollaboratorsForRepo(repository:String, completion: APIClientCompletionBlock?)
+    {
+        var requestPOSTParams = ["repo" : repository]
+        
+        var error: NSError?
+        
+        var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+        
+        if error == nil
+        {
+            var request = NSMutableURLRequest(URL: APIClient.requestForPath("/repo/collaborators"))
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "POST"
+            request.HTTPBody = requestBody
+            
+            APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if success
+                    {
+                        if let userJSON = response
+                        {
+                            var collaborators = Mapper<CollaboratorsResponse>().map(userJSON.dictionaryObject)
+                            
+                            completion?(success: true, error: nil, response: collaborators)
+                        }
+                        else
+                        {
+                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                        }
+                    }
+                    else
+                    {
+                        completion?(success: false, error: error, response: nil)
+                    }
+                })
+            })
+        }
+        else
+        {
+            completion?(success: false, error: error?.localizedDescription, response: nil)
+        }
+    }
+    
+    func loadMilestonesForRepo(repository:String, completion: APIClientCompletionBlock?)
+    {
+        var requestPOSTParams = ["repo" : repository]
+        
+        var error: NSError?
+        
+        var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+        
+        if error == nil
+        {
+            var request = NSMutableURLRequest(URL: APIClient.requestForPath("/repo/milestones"))
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "POST"
+            request.HTTPBody = requestBody
+            
+            APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if success
+                    {
+                        if let userJSON = response
+                        {
+                            var collaborators = Mapper<MilestoneResponse>().map(userJSON.dictionaryObject)
+                            
+                            completion?(success: true, error: nil, response: collaborators)
+                        }
+                        else
+                        {
+                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                        }
+                    }
+                    else
+                    {
+                        completion?(success: false, error: error, response: nil)
+                    }
+                })
+            })
+        }
+        else
+        {
+            completion?(success: false, error: error?.localizedDescription, response: nil)
+        }
+    }
+    
+    func submitNewGithubIssue(title:String, body: String?, images: Array<UIImage>?, labels: Array<String>?, milestone:Int?, assignedTo:String?, repo: String, completion: APIClientCompletionBlock?)
+    {
+        var requestPOSTParams: Dictionary<String, AnyObject> = ["repo" : repo, "title" : title]
+        
+        if body != nil
+        {
+            requestPOSTParams["body"] = body
+        }
+        
+        if images != nil{
+            
+            if count(images!) > 0
+            {
+                var base64Images = Array<String>()
+                
+                for image in images!
+                {
+                    var encoded = UIImageJPEGRepresentation(image, 0.5).base64EncodedStringWithOptions(NSDataBase64EncodingOptions.allZeros)
+                    
+                    base64Images.append(encoded)
+                }
+                
+                requestPOSTParams["images"] = base64Images
+            }
+        }
+        
+        if labels != nil
+        {
+            if count(labels!) > 0
+            {
+                requestPOSTParams["label_names"] = labels!
+            }
+        }
+        
+        if milestone != nil
+        {
+            requestPOSTParams["milestone_number"] = milestone
+        }
+        
+        if assignedTo != nil
+        {
+            requestPOSTParams["assigned_to"] = ["login" : assignedTo!]
+        }
+        
+        var error: NSError?
+        
+        var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+        
+        if error == nil
+        {
+            var request = NSMutableURLRequest(URL: APIClient.requestForPath("/issue/"))
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "POST"
+            request.HTTPBody = requestBody
+            
+            APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if success
+                    {
+                        if let userJSON = response
+                        {
+                            var collaborators = Mapper<MilestoneResponse>().map(userJSON.dictionaryObject)
+                            
+                            completion?(success: true, error: nil, response: collaborators)
+                        }
+                        else
+                        {
+                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                        }
+                    }
+                    else
+                    {
+                        completion?(success: false, error: error, response: nil)
+                    }
+                })
+            })
+        }
+        else
+        {
+            completion?(success: false, error: error?.localizedDescription, response: nil)
+        }
+    }
 }

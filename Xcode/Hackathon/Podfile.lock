@@ -59,7 +59,9 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
+  - SmoothLineView (0.1.8)
   - SwiftyJSON (2.2.1)
+  - TSMarkdownParser (1.0.17)
   - UIImage-ResizeMagick (0.0.1)
 
 DEPENDENCIES:
@@ -72,7 +74,9 @@ DEPENDENCIES:
   - OAuthSwift (~> 0.3)
   - ObjectMapper
   - SDWebImage (~> 3.7)
+  - SmoothLineView
   - SwiftyJSON (~> 2.2.0)
+  - TSMarkdownParser
   - UIImage-ResizeMagick
 
 EXTERNAL SOURCES:
@@ -103,7 +107,9 @@ SPEC CHECKSUMS:
   ObjectMapper: 0656dc1c155825897e5acfcd25362c6b61786dcb
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SmoothLineView: b19d8b80eb1a0d5645595ef72efa43b143567707
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+  TSMarkdownParser: 73006e0687af93a7125d645d7e214724e9476343
   UIImage-ResizeMagick: f08c2d14d1e8a5f0b402185408785540562f2fe7
 
 COCOAPODS: 0.38.2

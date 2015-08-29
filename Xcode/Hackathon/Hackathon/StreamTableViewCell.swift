@@ -28,7 +28,8 @@ class StreamTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.contentView.backgroundColor = UIColor(white: 1.0, alpha: 0.16)
+        self.contentView.backgroundColor = UIColor(white: 1.0, alpha: 0.02)
+        self.backgroundColor = UIColor.clearColor()
         
         self.profileImageView.layer.cornerRadius = CGRectGetWidth(self.profileImageView.bounds) / 2.0
         

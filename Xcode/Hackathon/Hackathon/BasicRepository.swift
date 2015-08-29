@@ -25,7 +25,7 @@ class BasicRepository: Mappable {
     }
     
     func mapping(map: Map) {
-        name                <- map["name"]
+        name                <- map["full_name"]
         identifier          <- map["id"]
         owner               <- map["owner"]
     }

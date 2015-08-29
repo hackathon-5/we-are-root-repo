@@ -11,5 +11,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import <UIImage_ResizeMagick/UIImage+ResizeMagick.h>
+#import <TSMarkdownParser/TSMarkdownParser.h>
+#import <SmoothLineView/SmoothLineView.h>
 
 #import "UIImage+FixImageOrientation.h"

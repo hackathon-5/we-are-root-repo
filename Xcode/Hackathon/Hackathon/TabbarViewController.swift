@@ -18,6 +18,9 @@ class TabbarViewController: UIViewController {
     
     private var activeViewControllerObject: UIViewController?
     
+    @IBOutlet var streamButton: UIButton!
+    @IBOutlet var settingsButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,12 +59,18 @@ class TabbarViewController: UIViewController {
         {
             self.streamNavigationController.view.hidden = false
             self.settingsNavigationController.view.hidden = true
+            
+            self.streamButton.setImage(UIImage(named: "iconTabStreamFilled"), forState: .Normal)
+            self.settingsButton.setImage(UIImage(named: "iconTabSettingsOutlined"), forState: .Normal)
         }
         
         if self.settingsNavigationController == controller
         {
             self.settingsNavigationController.view.hidden = false
             self.streamNavigationController.view.hidden = true
+            
+            self.streamButton.setImage(UIImage(named: "iconTabStreamOutlined"), forState: .Normal)
+            self.settingsButton.setImage(UIImage(named: "iconTabSettingsFilled"), forState: .Normal)
         }
         
         self.activeViewControllerObject = controller
