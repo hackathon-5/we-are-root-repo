@@ -42,3 +42,20 @@ def create_account():
     }
 
     return jsonify(rv)
+
+
+@account_bp.route('/update_push', methods=['POST'])
+def update_push():
+    new_token = request.json.get('push_token')
+
+    access_token = AccessToken.query.filter_by(access_token=g.access_token).first()
+    access_token.push_token = new_token
+
+    db.session.commit()
+
+    rv = {
+        'name': g.name,
+        'access_token': access_token.access_token
+    }
+
+    return jsonify(rv)

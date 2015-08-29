@@ -83,6 +83,7 @@ def create_comment():
     r = gh_repo.get_issue(issue_number)
     comment = r.create_comment(body)
     comment.repo = repo
+    comment.issue_number = issue_number
 
     comment.unix_created_at = arrow.get(comment.created_at).timestamp
     comment.unix_updated_at = arrow.get(comment.updated_at).timestamp

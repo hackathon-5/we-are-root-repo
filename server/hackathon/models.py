@@ -20,6 +20,8 @@ class Account(Base):
     name = db.Column(db.String)
     email = db.Column(db.String)
     github_user = db.Column(db.String, unique=True)
+    last_push = db.Column(db.DateTime)
+    last_email = db.Column(db.DateTime)
 
 
 class AccessToken(Base):
@@ -27,6 +29,7 @@ class AccessToken(Base):
 
     access_token = db.Column(db.String, unique=True)
     github_token = db.Column(db.String)
+    push_token = db.Column(db.String)
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
 
     account = db.relationship('Account', backref=db.backref('access_tokens', lazy='dynamic'))
