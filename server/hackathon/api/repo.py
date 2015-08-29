@@ -27,6 +27,11 @@ def watch_repos():
     if not request.json.get('repos'):
         abort(400)
 
+    currently_watched = WatchedRepo.query.filter_by(account_id=g.account_id).all()
+    for c in currently_watched:
+        if c.repo_id not in request.json.get('repos'):
+            db.session.delete(c)
+
     for repo_id in request.json.get('repos'):
         watch = WatchedRepo(repo_id=repo_id,
                             account_id=g.account_id)

@@ -21,7 +21,7 @@ def authenticate_user():
 
     token_header = request.headers.get('Authorization')
     if not token_header:
-        abort(400)
+        abort(401)
 
     access_token = AccessToken.query.filter_by(access_token=token_header).first()
     if not access_token:
