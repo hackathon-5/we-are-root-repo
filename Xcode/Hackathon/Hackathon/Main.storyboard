@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e8T-tX-Prf">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Tabbar View Controller-->
+        <scene sceneID="yFv-xZ-ZbB">
+            <objects>
+                <viewController id="e8T-tX-Prf" customClass="TabbarViewController" customModule="Hackathon" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wwR-1X-1PN"/>
+                        <viewControllerLayoutGuide type="bottom" id="fKZ-o6-GtR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sHM-pJ-bO7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeZ-VD-Un3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXI-56-2da">
+                                <rect key="frame" x="0.0" y="552" width="600" height="48"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="04q-c9-BGA">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsl-3V-zeB">
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="48"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="cOT-iN-BIk"/>
+                                            </constraints>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="switchToStream:" destination="e8T-tX-Prf" eventType="touchUpInside" id="zfJ-gf-SZo"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Izs-Wb-2Fg">
+                                            <rect key="frame" x="200" y="0.0" width="200" height="48"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="uag-ou-5sL"/>
+                                            </constraints>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="createIssuePressed:" destination="e8T-tX-Prf" eventType="touchUpInside" id="vrf-QG-sKr"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvD-RR-D62">
+                                            <rect key="frame" x="400" y="0.0" width="200" height="48"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="EhT-gx-rfR"/>
+                                            </constraints>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="switchToSettings:" destination="e8T-tX-Prf" eventType="touchUpInside" id="R1A-u6-i3o"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hsl-3V-zeB" firstAttribute="leading" secondItem="04q-c9-BGA" secondAttribute="leading" id="IIN-La-n8x"/>
+                                        <constraint firstItem="FvD-RR-D62" firstAttribute="leading" secondItem="Izs-Wb-2Fg" secondAttribute="trailing" id="WYg-gv-J9b"/>
+                                        <constraint firstItem="Izs-Wb-2Fg" firstAttribute="width" secondItem="FvD-RR-D62" secondAttribute="width" id="i2I-cW-L4k"/>
+                                        <constraint firstAttribute="bottom" secondItem="hsl-3V-zeB" secondAttribute="bottom" id="ioM-BZ-jyj"/>
+                                        <constraint firstItem="Izs-Wb-2Fg" firstAttribute="leading" secondItem="hsl-3V-zeB" secondAttribute="trailing" id="nbn-Fl-abU"/>
+                                        <constraint firstItem="Izs-Wb-2Fg" firstAttribute="width" secondItem="hsl-3V-zeB" secondAttribute="width" id="plE-AX-hUY"/>
+                                        <constraint firstAttribute="bottom" secondItem="Izs-Wb-2Fg" secondAttribute="bottom" id="r6z-kx-Jnd"/>
+                                        <constraint firstAttribute="bottom" secondItem="FvD-RR-D62" secondAttribute="bottom" id="rDL-bv-00E"/>
+                                        <constraint firstAttribute="trailing" secondItem="FvD-RR-D62" secondAttribute="trailing" id="w7S-6a-7na"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="WiS-ne-9p4"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QXI-56-2da" firstAttribute="leading" secondItem="sHM-pJ-bO7" secondAttribute="leading" id="2Jn-Uw-ReI"/>
+                            <constraint firstAttribute="trailing" secondItem="QXI-56-2da" secondAttribute="trailing" id="3XP-44-utZ"/>
+                            <constraint firstItem="HeZ-VD-Un3" firstAttribute="leading" secondItem="sHM-pJ-bO7" secondAttribute="leading" id="Dpz-iU-7oM"/>
+                            <constraint firstItem="fKZ-o6-GtR" firstAttribute="top" secondItem="HeZ-VD-Un3" secondAttribute="bottom" id="gjL-L3-LbK"/>
+                            <constraint firstItem="fKZ-o6-GtR" firstAttribute="top" secondItem="QXI-56-2da" secondAttribute="bottom" id="jHf-u4-zud"/>
+                            <constraint firstItem="HeZ-VD-Un3" firstAttribute="top" secondItem="wwR-1X-1PN" secondAttribute="bottom" constant="-20" id="omx-JH-wOn"/>
+                            <constraint firstAttribute="trailing" secondItem="HeZ-VD-Un3" secondAttribute="trailing" id="qKl-St-f6Q"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="childVCContainer" destination="HeZ-VD-Un3" id="5oR-AP-mYF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWg-lN-ckc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="430" y="-648"/>
+        </scene>
+        <!--Stream Table View Controller-->
+        <scene sceneID="vW4-BX-OMp">
+            <objects>
+                <tableViewController storyboardIdentifier="StreamViewController" id="RM5-SW-zQI" customClass="StreamTableViewController" customModule="Hackathon" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PbH-Yo-m5q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cUz-3x-9Zx">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cUz-3x-9Zx" id="x1I-px-HKq">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RM5-SW-zQI" id="RWk-W6-gEe"/>
+                            <outlet property="delegate" destination="RM5-SW-zQI" id="jD5-eL-CvZ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oRN-Ds-aQM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1341" y="-959"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="3Bj-7f-6kp">
+            <objects>
+                <tableViewController storyboardIdentifier="SettingsViewController" id="MKG-gd-X8E" customClass="SettingsTableViewController" customModule="Hackathon" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cOd-8o-WYl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6hK-uL-aAj">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6hK-uL-aAj" id="YJR-zk-tIf">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MKG-gd-X8E" id="Dm8-RA-FHG"/>
+                            <outlet property="delegate" destination="MKG-gd-X8E" id="nKe-SS-jOD"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZYm-bm-EMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1341" y="-227"/>
+        </scene>
+    </scenes>
+</document>

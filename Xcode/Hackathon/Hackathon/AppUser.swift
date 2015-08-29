@@ -9,14 +9,17 @@
 import UIKit
 import ObjectMapper
 
-class User: Mappable {
+class AppUser: Mappable {
    
+    /// The name of the currently logged in user
+    var name: String?
+    
     class func newInstance(map: Map) -> Mappable? {
-        return User()
+        return AppUser()
     }
     
     func mapping(map: Map) {
-//        emailVerified           <- map["email_verified"]
+        name           <- map["name"]
     }
     
 }
