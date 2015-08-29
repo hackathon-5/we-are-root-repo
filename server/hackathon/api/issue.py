@@ -51,6 +51,16 @@ def create_comment():
     if not repo:
         abort(400)
 
+    if request.json.get('images'):
+        body += '\n\n'
+        for image in request.json.get('images'):
+            image_bytes = base64.b64decode(image)
+            filename = '{}.jpg'.format(hashlib.md5(image_bytes).hexdigest())
+            with open('scratch/{}'.format(filename), 'wb') as output:
+                output.write(image_bytes)
+
+            body += '{}/{}\n'.format(current_app.config.get('STATIC_ASSET_URL'), filename)
+
     gh = Github(login_or_token=g.github_token, per_page=100)
     gh_repo = gh.get_repo(repo)
 
