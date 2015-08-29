@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		826E09A8074742825B6C0FE5 /* Pods_Hackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 103C1B7F61E32A6EBD7BD7FC /* Pods_Hackathon.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C6C0812B1B91348E00CB1956 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C0812A1B91348E00CB1956 /* AppDelegate.swift */; };
-		C6C0812D1B91348E00CB1956 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C0812C1B91348E00CB1956 /* ViewController.swift */; };
-		C6C081301B91348E00CB1956 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C0812E1B91348E00CB1956 /* Main.storyboard */; };
+		C6C0812D1B91348E00CB1956 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C0812C1B91348E00CB1956 /* LoginViewController.swift */; };
+		C6C081301B91348E00CB1956 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6C0812E1B91348E00CB1956 /* Login.storyboard */; };
 		C6C081321B91348E00CB1956 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6C081311B91348E00CB1956 /* Images.xcassets */; };
 		C6C081351B91348E00CB1956 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C081331B91348E00CB1956 /* LaunchScreen.xib */; };
+		C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C081531B9137CB00CB1956 /* UIImage+FixImageOrientation.m */; };
+		C6C081571B91383600CB1956 /* RelativeDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081561B91383600CB1956 /* RelativeDateFormatter.swift */; };
+		C6C081591B91386700CB1956 /* AppStateTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081581B91386700CB1956 /* AppStateTransitioner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +25,15 @@
 		C6C081251B91348E00CB1956 /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C081291B91348E00CB1956 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6C0812A1B91348E00CB1956 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C6C0812C1B91348E00CB1956 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C6C0812F1B91348E00CB1956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C6C0812C1B91348E00CB1956 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C6C0812F1B91348E00CB1956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		C6C081311B91348E00CB1956 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C6C081341B91348E00CB1956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C6C081511B9137CB00CB1956 /* Hackathon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hackathon-Bridging-Header.h"; sourceTree = "<group>"; };
+		C6C081521B9137CB00CB1956 /* UIImage+FixImageOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixImageOrientation.h"; sourceTree = "<group>"; };
+		C6C081531B9137CB00CB1956 /* UIImage+FixImageOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixImageOrientation.m"; sourceTree = "<group>"; };
+		C6C081561B91383600CB1956 /* RelativeDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeDateFormatter.swift; sourceTree = "<group>"; };
+		C6C081581B91386700CB1956 /* AppStateTransitioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateTransitioner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,10 +79,11 @@
 			isa = PBXGroup;
 			children = (
 				C6C0812A1B91348E00CB1956 /* AppDelegate.swift */,
-				C6C0812C1B91348E00CB1956 /* ViewController.swift */,
-				C6C0812E1B91348E00CB1956 /* Main.storyboard */,
 				C6C081311B91348E00CB1956 /* Images.xcassets */,
-				C6C081331B91348E00CB1956 /* LaunchScreen.xib */,
+				C6C0814C1B9135BD00CB1956 /* Session Manager */,
+				C6C0814B1B9135B900CB1956 /* Components */,
+				C6C0814E1B9135D000CB1956 /* Storyboards / UI */,
+				C6C0814A1B9135B400CB1956 /* View Controllers */,
 				C6C081281B91348E00CB1956 /* Supporting Files */,
 			);
 			path = Hackathon;
@@ -83,9 +92,69 @@
 		C6C081281B91348E00CB1956 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6C081511B9137CB00CB1956 /* Hackathon-Bridging-Header.h */,
 				C6C081291B91348E00CB1956 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6C0814A1B9135B400CB1956 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C6C0812C1B91348E00CB1956 /* LoginViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C6C0814B1B9135B900CB1956 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081551B91382700CB1956 /* Relative Date Formatter */,
+				C6C081501B9137B700CB1956 /* Fix Image Orientation */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		C6C0814C1B9135BD00CB1956 /* Session Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C6C0814D1B9135C800CB1956 /* Data Models */,
+			);
+			name = "Session Manager";
+			sourceTree = "<group>";
+		};
+		C6C0814D1B9135C800CB1956 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		C6C0814E1B9135D000CB1956 /* Storyboards / UI */ = {
+			isa = PBXGroup;
+			children = (
+				C6C0812E1B91348E00CB1956 /* Login.storyboard */,
+				C6C081331B91348E00CB1956 /* LaunchScreen.xib */,
+				C6C081581B91386700CB1956 /* AppStateTransitioner.swift */,
+			);
+			name = "Storyboards / UI";
+			sourceTree = "<group>";
+		};
+		C6C081501B9137B700CB1956 /* Fix Image Orientation */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081521B9137CB00CB1956 /* UIImage+FixImageOrientation.h */,
+				C6C081531B9137CB00CB1956 /* UIImage+FixImageOrientation.m */,
+			);
+			name = "Fix Image Orientation";
+			sourceTree = "<group>";
+		};
+		C6C081551B91382700CB1956 /* Relative Date Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081561B91383600CB1956 /* RelativeDateFormatter.swift */,
+			);
+			name = "Relative Date Formatter";
 			sourceTree = "<group>";
 		};
 		F665A9060C3E6469DF3212AB /* Frameworks */ = {
@@ -156,7 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6C081301B91348E00CB1956 /* Main.storyboard in Resources */,
+				C6C081301B91348E00CB1956 /* Login.storyboard in Resources */,
 				C6C081351B91348E00CB1956 /* LaunchScreen.xib in Resources */,
 				C6C081321B91348E00CB1956 /* Images.xcassets in Resources */,
 			);
@@ -217,20 +286,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6C0812D1B91348E00CB1956 /* ViewController.swift in Sources */,
+				C6C081571B91383600CB1956 /* RelativeDateFormatter.swift in Sources */,
+				C6C0812D1B91348E00CB1956 /* LoginViewController.swift in Sources */,
+				C6C081591B91386700CB1956 /* AppStateTransitioner.swift in Sources */,
 				C6C0812B1B91348E00CB1956 /* AppDelegate.swift in Sources */,
+				C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C6C0812E1B91348E00CB1956 /* Main.storyboard */ = {
+		C6C0812E1B91348E00CB1956 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C6C0812F1B91348E00CB1956 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		C6C081331B91348E00CB1956 /* LaunchScreen.xib */ = {
@@ -330,9 +402,12 @@
 			baseConfigurationReference = BB46796662938B457BE76810 /* Pods-Hackathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Hackathon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hackathon/Hackathon-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -341,9 +416,11 @@
 			baseConfigurationReference = 748A6DD882FC3E116AFE887E /* Pods-Hackathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Hackathon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hackathon/Hackathon-Bridging-Header.h";
 			};
 			name = Release;
 		};
