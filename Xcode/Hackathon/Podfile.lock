@@ -53,6 +53,7 @@ PODS:
   - KeychainAccess (1.2.1)
   - NSDate-Extensions-iOS7 (1.0.1)
   - NSTimer-Blocks (0.0.1)
+  - OAuthSwift (0.3.7)
   - ObjectMapper (0.15)
   - pop (1.0.7)
   - SDWebImage (3.7.3):
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - KeychainAccess
   - NSDate-Extensions-iOS7 (from `https://github.com/HiTask/NSDate-Extensions.git`)
   - NSTimer-Blocks (~> 0.0)
+  - OAuthSwift (~> 0.3)
   - ObjectMapper
   - SDWebImage (~> 3.7)
   - SwiftyJSON (~> 2.2.0)
@@ -97,6 +99,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 3d7922baf90762a976adb7f6030d74c1a4110a1d
   NSDate-Extensions-iOS7: 8ff45f790879730314b847cb262936952989077e
   NSTimer-Blocks: 88faf9aef5f250ead087f3f67ae642517083bf36
+  OAuthSwift: d5a96a1a92329e3b4bb63b682c3e4e89a8698dc8
   ObjectMapper: 0656dc1c155825897e5acfcd25362c6b61786dcb
   pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84

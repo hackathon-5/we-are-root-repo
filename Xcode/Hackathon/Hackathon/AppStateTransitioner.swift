@@ -44,5 +44,11 @@ class AppStateTransitioner {
         }
     }
     
+    static func switchToLoginContext(animated: Bool)
+    {
+        let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as? UIViewController
+        
+        self.transition(loginVC, animated: animated)
+    }
 }
 

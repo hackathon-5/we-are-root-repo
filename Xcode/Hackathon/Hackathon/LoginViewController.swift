@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OAuthSwift
 
 class LoginViewController: UIViewController {
 
@@ -21,5 +22,9 @@ class LoginViewController: UIViewController {
     }
 
 
+   @IBAction private func authorizeGithub()
+    {
+        SessionManager.sharedManager.beginOAuthGithubLogin()
+    }
 }
 

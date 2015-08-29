@@ -15,5 +15,6 @@ target 'Hackathon' do
     pod 'JLRoutes'
     pod 'IDMPhotoBrowser'
     pod 'Google/CloudMessaging'
+    pod 'OAuthSwift', '~> 0.3'
     
 end

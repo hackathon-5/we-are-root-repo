@@ -22,6 +22,8 @@
 		C6C081611B913D8A00CB1956 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C081601B913D8A00CB1956 /* CoreGraphics.framework */; };
 		C6C081631B913DDB00CB1956 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C081621B913DDB00CB1956 /* MessageUI.framework */; };
 		C6C081651B913DE000CB1956 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C081641B913DE000CB1956 /* QuartzCore.framework */; };
+		C6C081671B91454C00CB1956 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081661B91454C00CB1956 /* SessionManager.swift */; };
+		C6C081691B914E9000CB1956 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081681B914E9000CB1956 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		C6C081601B913D8A00CB1956 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C6C081621B913DDB00CB1956 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C6C081641B913DE000CB1956 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C6C081661B91454C00CB1956 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		C6C081681B914E9000CB1956 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				C6C0814D1B9135C800CB1956 /* Data Models */,
+				C6C081661B91454C00CB1956 /* SessionManager.swift */,
 			);
 			name = "Session Manager";
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 		C6C0814D1B9135C800CB1956 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				C6C081681B914E9000CB1956 /* User.swift */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -151,9 +157,9 @@
 		C6C0814E1B9135D000CB1956 /* Storyboards / UI */ = {
 			isa = PBXGroup;
 			children = (
+				C6C081581B91386700CB1956 /* AppStateTransitioner.swift */,
 				C6C0812E1B91348E00CB1956 /* Login.storyboard */,
 				C6C081331B91348E00CB1956 /* LaunchScreen.xib */,
-				C6C081581B91386700CB1956 /* AppStateTransitioner.swift */,
 			);
 			name = "Storyboards / UI";
 			sourceTree = "<group>";
@@ -312,9 +318,11 @@
 			files = (
 				C6C081571B91383600CB1956 /* RelativeDateFormatter.swift in Sources */,
 				C6C0812D1B91348E00CB1956 /* LoginViewController.swift in Sources */,
+				C6C081671B91454C00CB1956 /* SessionManager.swift in Sources */,
 				C6C081591B91386700CB1956 /* AppStateTransitioner.swift in Sources */,
 				C6C0812B1B91348E00CB1956 /* AppDelegate.swift in Sources */,
 				C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */,
+				C6C081691B914E9000CB1956 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

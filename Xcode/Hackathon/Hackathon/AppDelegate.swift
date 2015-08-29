@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,8 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        // Load the login controller
-        self.window?.rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as? UIViewController
+        if SessionManager.sharedManager.isLoggedIn()
+        {
+            //Load main app
+        }
+        else
+        {
+            // Load the login controller
+            AppStateTransitioner.switchToLoginContext(false)
+        }
         
         self.window?.makeKeyAndVisible()
         
@@ -66,6 +74,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSLog("Push registration error: %@", error)
         
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        
+        if (url.host == "oauth-callback") {
+            if ( url.path!.hasPrefix("/github" )){
+                OAuth2Swift.handleOpenURL(url)
+            }
+        }
+        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
