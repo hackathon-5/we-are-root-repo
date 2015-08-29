@@ -29,6 +29,21 @@ class User(Schema):
     avatar_url = fields.Str()
 
 
+class Milestone(Schema):
+    id = fields.Integer()
+    number = fields.Integer()
+    title = fields.Str()
+    description = fields.Str()
+    creator = fields.Nested(User)
+    due_on = fields.Integer(attribute='unix_due_on')
+    created_at = fields.Integer(attribute='unix_created_at')
+    updated_at = fields.Integer(attribute='unix_updated_at')
+
+
+class Label(Schema):
+    name = fields.Str()
+
+
 class Issue(Schema):
     id = fields.Integer()
     number = fields.Integer()
@@ -38,6 +53,8 @@ class Issue(Schema):
     body = fields.Str()
     user = fields.Nested(User)
     assignee = fields.Nested(User)
+    labels = fields.List(fields.Nested(Label), allow_none=True)
+    milestone = fields.Nested(Milestone)
     created_at = fields.Integer(attribute='unix_created_at')
     updated_at = fields.Integer(attribute='unix_updated_at')
 
@@ -50,16 +67,3 @@ class Comment(Schema):
     user = fields.Nested(User)
     created_at = fields.Integer(attribute='unix_created_at')
     updated_at = fields.Integer(attribute='unix_updated_at')
-
-
-class Milestone(Schema):
-    id = fields.Integer()
-    description = fields.Str()
-    creator = fields.Nested(User)
-    due_on = fields.Integer(attribute='unix_due_on')
-    created_at = fields.Integer(attribute='unix_created_at')
-    updated_at = fields.Integer(attribute='unix_updated_at')
-
-
-class Label(Schema):
-    name = fields.Str()

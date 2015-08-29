@@ -4,6 +4,7 @@ import hashlib
 
 from flask import Blueprint, jsonify, g, current_app, abort, request
 from github import Github
+from github.GithubObject import NotSet
 
 from hackathon.objects import Issue, Comment
 
@@ -15,6 +16,12 @@ def create_issue():
     repo = request.json.get('repo')
     title = request.json.get('title')
     body = request.json.get('body')
+    assigned_to = request.json.get('assigned_to')
+    milestone_number = request.json.get('milestone_number')
+    label_names = request.json.get('label_names')
+
+    assigned_to_user, milestone, label_list = None, NotSet, NotSet
+
     if not repo or not title:
         abort(400)
 
@@ -31,7 +38,16 @@ def create_issue():
     gh = Github(login_or_token=g.github_token, per_page=100)
     gh_repo = gh.get_repo(repo)
 
-    r = gh_repo.create_issue(title=title, body=body)
+    if assigned_to:
+        assigned_to_user = assigned_to['login']
+
+    if milestone_number:
+        milestone = gh_repo.get_milestone(milestone_number)
+
+    if label_names:
+        label_list = [gh_repo.get_label(l) for l in label_names]
+
+    r = gh_repo.create_issue(title=title, body=body, assignee=assigned_to_user, milestone=milestone, labels=label_list)
     r.repo = repo
 
     r.unix_created_at = arrow.get(r.created_at).timestamp
