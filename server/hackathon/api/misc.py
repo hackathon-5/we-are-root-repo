@@ -9,7 +9,7 @@ misc_bp = Blueprint('misc', __name__, url_prefix='/misc')
 @misc_bp.route('/notify')
 def send_notification():
     api_key = current_app.config['GCM_API_KEY']
-    tokens = AccessToken.query.filter_by(accound_id=g.account_id).distinct(AccessToken.push_token).all()
+    tokens = AccessToken.query.filter_by(account_id=g.account_id).distinct(AccessToken.push_token).all()
 
     notification = {
         'title': 'hello',
@@ -17,6 +17,7 @@ def send_notification():
     }
 
     for token in tokens:
-        send_message(api_key, token.push_token, notification=notification)
+        if token.push_token:
+            send_message(api_key, token.push_token, notification=notification)
 
     return jsonify({'hello': g.name})
