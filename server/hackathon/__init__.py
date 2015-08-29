@@ -220,7 +220,7 @@ def process_emails():
                 for i in all_issues:
                     issues_block += issues_format.format(i.number, i.title, arrow.get(i.updated_at).humanize())
 
-                send_mandrill_email('kelly@52inc.com', 'email-digest', {
+                send_mandrill_email(account.email, 'email-digest', {
                     'num_comments': num_comments,
                     'num_issues': num_issues,
                     'issues_block': issues_block
