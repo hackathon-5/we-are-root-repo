@@ -25,6 +25,9 @@ class StreamTableViewController: UITableViewController, DropdownTitleViewDelegat
         self.dropdownTitle.dropdownDelegate = self
         
         self.navigationItem.titleView = self.dropdownTitle
+        
+        self.tableView.backgroundColor = UIColor(red: 39.0/255.0, green: 39.0/255.0, blue: 41.0/255.0, alpha: 1.0)
+        self.tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,6 +42,7 @@ class StreamTableViewController: UITableViewController, DropdownTitleViewDelegat
 
     func dropDownTitleViewWasSelected(dropdown: DropdownTitleView) {
         //Segue stream selection
+        
     }
     // MARK: - Table view data source
 

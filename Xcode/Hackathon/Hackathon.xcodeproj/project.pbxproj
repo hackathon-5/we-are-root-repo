@@ -44,6 +44,7 @@
 		C6C081A91B916F9F00CB1956 /* SF-UI-Text-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6C081941B916F9F00CB1956 /* SF-UI-Text-RegularItalic.otf */; };
 		C6C081AA1B916F9F00CB1956 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6C081951B916F9F00CB1956 /* SF-UI-Text-Semibold.otf */; };
 		C6C081AB1B916F9F00CB1956 /* SF-UI-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C6C081961B916F9F00CB1956 /* SF-UI-Text-SemiboldItalic.otf */; };
+		C6C081B11B91837600CB1956 /* StreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081B01B91837600CB1956 /* StreamTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		C6C081941B916F9F00CB1956 /* SF-UI-Text-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-RegularItalic.otf"; sourceTree = "<group>"; };
 		C6C081951B916F9F00CB1956 /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		C6C081961B916F9F00CB1956 /* SF-UI-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		C6C081B01B91837600CB1956 /* StreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 		C6C081761B91622800CB1956 /* Stream */ = {
 			isa = PBXGroup;
 			children = (
+				C6C081AF1B91836200CB1956 /* StreamCell */,
 				C6C0817C1B916E2500CB1956 /* Dropdown Title */,
 				C6C081771B91623E00CB1956 /* StreamTableViewController.swift */,
 			);
@@ -311,6 +314,14 @@
 				C6C081961B916F9F00CB1956 /* SF-UI-Text-SemiboldItalic.otf */,
 			);
 			name = "San Francisco";
+			sourceTree = "<group>";
+		};
+		C6C081AF1B91836200CB1956 /* StreamCell */ = {
+			isa = PBXGroup;
+			children = (
+				C6C081B01B91837600CB1956 /* StreamTableViewCell.swift */,
+			);
+			name = StreamCell;
 			sourceTree = "<group>";
 		};
 		F665A9060C3E6469DF3212AB /* Frameworks */ = {
@@ -467,6 +478,7 @@
 				C6C0812D1B91348E00CB1956 /* LoginViewController.swift in Sources */,
 				C6C081671B91454C00CB1956 /* SessionManager.swift in Sources */,
 				C6C081591B91386700CB1956 /* AppStateTransitioner.swift in Sources */,
+				C6C081B11B91837600CB1956 /* StreamTableViewCell.swift in Sources */,
 				C6C0812B1B91348E00CB1956 /* AppDelegate.swift in Sources */,
 				C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */,
 				C6C081691B914E9000CB1956 /* AppUser.swift in Sources */,

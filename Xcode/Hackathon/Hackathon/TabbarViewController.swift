@@ -22,6 +22,9 @@ class TabbarViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.streamNavigationController.navigationBar.translucent = false
+        self.settingsNavigationController.navigationBar.translucent = false
+        
         self.addChildViewController(self.streamNavigationController)
         self.addChildViewController(self.settingsNavigationController)
         
@@ -41,6 +44,10 @@ class TabbarViewController: UIViewController {
         
         self.streamNavigationController.view.frame = self.childVCContainer.bounds
         self.settingsNavigationController.view.frame = self.childVCContainer.bounds
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func setActiveViewController(controller: UIViewController) {

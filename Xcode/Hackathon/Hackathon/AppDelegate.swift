@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSLog("Welcome to Hackathon 5!")
         
+        //Theming
+        UINavigationBar.appearance().barTintColor = UIColor(red: 56.0/255.0, green: 56.0/255.0, blue: 59.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor(), NSFontAttributeName : UIFont(name: "SFUIText-Medium", size: 17.0)!]
+        
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
