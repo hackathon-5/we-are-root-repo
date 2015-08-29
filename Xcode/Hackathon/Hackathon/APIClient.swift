@@ -14,7 +14,7 @@ typealias APIClientJSONCompletionBlock = ((success:Bool, error:String?, response
 
 class APIClient: NSObject {
     
-    private static let HackathonServerAPIBase = NSURL(string: "http://hackme.me")!
+    private static let HackathonServerAPIBase = NSURL(string: "http://52.21.30.201:8000/")! //This will be SSL eventually
  
     /**
     Send an API request to the Hackathon server.
@@ -61,7 +61,7 @@ class APIClient: NSObject {
             {
                 completion?(success: false, error: error.localizedDescription, response: nil)
             }
-        })
+        }).resume()
     }
     
     /**

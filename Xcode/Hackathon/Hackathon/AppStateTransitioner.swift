@@ -50,5 +50,12 @@ class AppStateTransitioner {
         
         self.transition(loginVC, animated: animated)
     }
+    
+    static func switchToMainAppContext(animated: Bool)
+    {
+        let mainAppVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UIViewController
+        
+        self.transition(mainAppVC, animated: animated)
+    }
 }
 

@@ -16,5 +16,6 @@ target 'Hackathon' do
     pod 'IDMPhotoBrowser'
     pod 'Google/CloudMessaging'
     pod 'OAuthSwift', '~> 0.3'
-    
+    pod 'SmoothLineView'
+    pod 'TSMarkdownParser'
 end

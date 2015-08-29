@@ -14,6 +14,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("OAuthLoginDidSucceed"), name: kHackathonSessionManagerOAuthSuccess, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("OAuthLoginDidFail:"), name: kHackathonSessionManagerOAuthFailure, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +29,27 @@ class LoginViewController: UIViewController {
    @IBAction private func authorizeGithub()
     {
         SessionManager.sharedManager.beginOAuthGithubLogin()
+    }
+    
+    func OAuthLoginDidSucceed()
+    {
+        AppStateTransitioner.switchToMainAppContext(true)
+    }
+    
+    func OAuthLoginDidFail(notification: NSNotification)
+    {
+        var displayError = "An unknown error occurred while logging you into Github. Please try again."
+        
+        if let errorMessage = notification.object as? String
+        {
+            displayError = errorMessage
+        }
+        
+        let alert = UIAlertController(title: "Login Error", message: displayError, preferredStyle: .Alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 
