@@ -16,6 +16,12 @@
 		C6C081541B9137CB00CB1956 /* UIImage+FixImageOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C081531B9137CB00CB1956 /* UIImage+FixImageOrientation.m */; };
 		C6C081571B91383600CB1956 /* RelativeDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081561B91383600CB1956 /* RelativeDateFormatter.swift */; };
 		C6C081591B91386700CB1956 /* AppStateTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C081581B91386700CB1956 /* AppStateTransitioner.swift */; };
+		C6C0815B1B913CCD00CB1956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6C0815A1B913CCD00CB1956 /* GoogleService-Info.plist */; };
+		C6C0815D1B913D8100CB1956 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C0815C1B913D8100CB1956 /* SystemConfiguration.framework */; };
+		C6C0815F1B913D8500CB1956 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C0815E1B913D8500CB1956 /* MobileCoreServices.framework */; };
+		C6C081611B913D8A00CB1956 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C081601B913D8A00CB1956 /* CoreGraphics.framework */; };
+		C6C081631B913DDB00CB1956 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C081621B913DDB00CB1956 /* MessageUI.framework */; };
+		C6C081651B913DE000CB1956 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C081641B913DE000CB1956 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		C6C081531B9137CB00CB1956 /* UIImage+FixImageOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixImageOrientation.m"; sourceTree = "<group>"; };
 		C6C081561B91383600CB1956 /* RelativeDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelativeDateFormatter.swift; sourceTree = "<group>"; };
 		C6C081581B91386700CB1956 /* AppStateTransitioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateTransitioner.swift; sourceTree = "<group>"; };
+		C6C0815A1B913CCD00CB1956 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C6C0815C1B913D8100CB1956 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C6C0815E1B913D8500CB1956 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C6C081601B913D8A00CB1956 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C6C081621B913DDB00CB1956 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C6C081641B913DE000CB1956 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +53,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6C081651B913DE000CB1956 /* QuartzCore.framework in Frameworks */,
+				C6C081631B913DDB00CB1956 /* MessageUI.framework in Frameworks */,
+				C6C081611B913D8A00CB1956 /* CoreGraphics.framework in Frameworks */,
+				C6C0815F1B913D8500CB1956 /* MobileCoreServices.framework in Frameworks */,
+				C6C0815D1B913D8100CB1956 /* SystemConfiguration.framework in Frameworks */,
 				826E09A8074742825B6C0FE5 /* Pods_Hackathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +109,7 @@
 		C6C081281B91348E00CB1956 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C6C0815A1B913CCD00CB1956 /* GoogleService-Info.plist */,
 				C6C081511B9137CB00CB1956 /* Hackathon-Bridging-Header.h */,
 				C6C081291B91348E00CB1956 /* Info.plist */,
 			);
@@ -160,6 +178,11 @@
 		F665A9060C3E6469DF3212AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6C081641B913DE000CB1956 /* QuartzCore.framework */,
+				C6C081621B913DDB00CB1956 /* MessageUI.framework */,
+				C6C081601B913D8A00CB1956 /* CoreGraphics.framework */,
+				C6C0815E1B913D8500CB1956 /* MobileCoreServices.framework */,
+				C6C0815C1B913D8100CB1956 /* SystemConfiguration.framework */,
 				103C1B7F61E32A6EBD7BD7FC /* Pods_Hackathon.framework */,
 			);
 			name = Frameworks;
@@ -226,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6C081301B91348E00CB1956 /* Login.storyboard in Resources */,
+				C6C0815B1B913CCD00CB1956 /* GoogleService-Info.plist in Resources */,
 				C6C081351B91348E00CB1956 /* LaunchScreen.xib in Resources */,
 				C6C081321B91348E00CB1956 /* Images.xcassets in Resources */,
 			);
@@ -404,6 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Hackathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hackathon/Hackathon-Bridging-Header.h";
@@ -418,6 +443,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Hackathon/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hackathon/Hackathon-Bridging-Header.h";

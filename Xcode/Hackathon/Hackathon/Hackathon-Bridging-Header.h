@@ -9,7 +9,6 @@
 #import <UIImage_ResizeMagick/UIImage+ResizeMagick.h>
 #import <SDWebImage/SDImageCache.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <DAProgressOverlayView/DAProgressOverlayView.h>
 #import <IDMPhotoBrowser/IDMPhotoBrowser.h>
 #import <UIImage_ResizeMagick/UIImage+ResizeMagick.h>
 
