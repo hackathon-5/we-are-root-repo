@@ -25,6 +25,12 @@ class SessionManager: NSObject {
     var currentUser: AppUser?
     var accessToken: String?
     
+    var pushToken: String? {
+        didSet{
+            self.savePushTokenToServer(nil)
+        }
+    }
+    
     var selectedReposForStream: Array<String> = Array<String>() {
         didSet {
             self.saveSession()
@@ -83,6 +89,59 @@ class SessionManager: NSObject {
         self.keychain.remove("accessToken")
         self.keychain.remove("userJSON")
         self.keychain.remove("selectedReposForStream")
+    }
+    
+    func promptNotifications()
+    {
+        let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
+    }
+    
+    func savePushTokenToServer(completion: APIClientCompletionBlock?)
+    {
+        if self.isLoggedIn() && self.pushToken != nil
+        {
+            var requestPOSTParams = ["push_token" : self.pushToken!]
+            
+            var error: NSError?
+            
+            var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+            
+            if error == nil
+            {
+                var request = NSMutableURLRequest(URL: APIClient.requestForPath("/account/update_push"))
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.HTTPMethod = "POST"
+                request.HTTPBody = requestBody
+                
+                APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        if success
+                        {
+                            if let userJSON = response
+                            {
+                                completion?(success: true, error: nil, response: nil)
+                            }
+                            else
+                            {
+                                completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                            }
+                        }
+                        else
+                        {
+                            completion?(success: false, error: error, response: nil)
+                        }
+                    })
+                })
+            }
+            else
+            {
+                completion?(success: false, error: error?.localizedDescription, response: nil)
+            }
+
+        }
     }
     
     /**
@@ -202,25 +261,77 @@ class SessionManager: NSObject {
             
             APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     if success
                     {
                         if let userJSON = response
                         {
                             var repoList = Mapper<StreamResponse>().map(userJSON.dictionaryObject)
                             
-                            completion?(success: true, error: nil, response: repoList)
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                completion?(success: true, error: nil, response: repoList)
+                            })
                         }
                         else
                         {
-                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                            })
                         }
                     }
                     else
                     {
-                        completion?(success: false, error: error, response: nil)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            completion?(success: false, error: error, response: nil)
+                        })
                     }
-                })
+            })
+        }
+        else
+        {
+            completion?(success: false, error: error?.localizedDescription, response: nil)
+        }
+    }
+    
+    func loadIssue(number:Int, repo: String, completion: APIClientCompletionBlock?)
+    {
+        var requestPOSTParams = ["repo" : repo, "issue_number" : number]
+        
+        var error: NSError?
+        
+        var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+        
+        if error == nil
+        {
+            var request = NSMutableURLRequest(URL: APIClient.requestForPath("/issue/details"))
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "POST"
+            request.HTTPBody = requestBody
+            
+            APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                
+                if success
+                {
+                    if let userJSON = response
+                    {
+                        var repoList = Mapper<IssueResponse>().map(userJSON.dictionaryObject)
+                        
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            completion?(success: true, error: nil, response: repoList)
+                        })
+                    }
+                    else
+                    {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                        })
+                    }
+                }
+                else
+                {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        completion?(success: false, error: error, response: nil)
+                    })
+                }
             })
         }
         else
@@ -442,4 +553,66 @@ class SessionManager: NSObject {
             completion?(success: false, error: error?.localizedDescription, response: nil)
         }
     }
+    
+    func submitNewGithubComment(repo:String, number: Int, comment: String, images: Array<UIImage>?, completion: APIClientCompletionBlock?)
+    {
+        var requestPOSTParams: Dictionary<String, AnyObject> = ["repo" : repo, "issue_number" : number, "body" : comment]
+        
+        if images != nil{
+            
+            if count(images!) > 0
+            {
+                var base64Images = Array<String>()
+                
+                for image in images!
+                {
+                    var encoded = UIImageJPEGRepresentation(image, 0.5).base64EncodedStringWithOptions(NSDataBase64EncodingOptions.allZeros)
+                    
+                    base64Images.append(encoded)
+                }
+                
+                requestPOSTParams["images"] = base64Images
+            }
+        }
+        
+        var error: NSError?
+        
+        var requestBody = NSJSONSerialization.dataWithJSONObject(requestPOSTParams, options: .allZeros, error: &error)
+        
+        if error == nil
+        {
+            var request = NSMutableURLRequest(URL: APIClient.requestForPath("/issue/comment"))
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "POST"
+            request.HTTPBody = requestBody
+            
+            APIClient.sendRequest(request, authorization: true, completion: { (success, error, response) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if success
+                    {
+                        if let userJSON = response
+                        {
+                            var collaborators = Mapper<MilestoneResponse>().map(userJSON.dictionaryObject)
+                            
+                            completion?(success: true, error: nil, response: collaborators)
+                        }
+                        else
+                        {
+                            completion?(success: false, error: "The server returned an unknown response.", response: nil)
+                        }
+                    }
+                    else
+                    {
+                        completion?(success: false, error: error, response: nil)
+                    }
+                })
+            })
+        }
+        else
+        {
+            completion?(success: false, error: error?.localizedDescription, response: nil)
+        }
+    }
+
 }

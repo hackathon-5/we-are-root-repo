@@ -11,9 +11,13 @@ import OAuthSwift
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet var loginButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.loginButton.layer.cornerRadius = 4.0
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("OAuthLoginDidSucceed"), name: kHackathonSessionManagerOAuthSuccess, object: nil)
         
@@ -24,7 +28,14 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 
    @IBAction private func authorizeGithub()
     {

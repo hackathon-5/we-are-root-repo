@@ -49,7 +49,6 @@ PODS:
     - AFNetworking
     - DACircularProgress
     - pop
-  - JLRoutes (1.5.2)
   - KeychainAccess (1.2.1)
   - NSDate-Extensions-iOS7 (1.0.1)
   - NSTimer-Blocks (0.0.1)
@@ -62,12 +61,10 @@ PODS:
   - SmoothLineView (0.1.8)
   - SwiftyJSON (2.2.1)
   - TSMarkdownParser (1.0.17)
-  - UIImage-ResizeMagick (0.0.1)
 
 DEPENDENCIES:
   - Google/CloudMessaging
   - IDMPhotoBrowser
-  - JLRoutes
   - KeychainAccess
   - NSDate-Extensions-iOS7 (from `https://github.com/HiTask/NSDate-Extensions.git`)
   - NSTimer-Blocks (~> 0.0)
@@ -77,7 +74,6 @@ DEPENDENCIES:
   - SmoothLineView
   - SwiftyJSON (~> 2.2.0)
   - TSMarkdownParser
-  - UIImage-ResizeMagick
 
 EXTERNAL SOURCES:
   NSDate-Extensions-iOS7:
@@ -99,7 +95,6 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: a7b0feed1fe667c8d5e647177938d0ecd62d6948
   GoogleUtilities: e3475cd4d45134221d2f3f3626095a1c49b62041
   IDMPhotoBrowser: 1155caa03f8705b7943c074c26b55aadd43d71da
-  JLRoutes: fc36fd38ab476d5ac3a6a84b05be60e4b1a2bc81
   KeychainAccess: 3d7922baf90762a976adb7f6030d74c1a4110a1d
   NSDate-Extensions-iOS7: 8ff45f790879730314b847cb262936952989077e
   NSTimer-Blocks: 88faf9aef5f250ead087f3f67ae642517083bf36
@@ -110,6 +105,5 @@ SPEC CHECKSUMS:
   SmoothLineView: b19d8b80eb1a0d5645595ef72efa43b143567707
   SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
   TSMarkdownParser: 73006e0687af93a7125d645d7e214724e9476343
-  UIImage-ResizeMagick: f08c2d14d1e8a5f0b402185408785540562f2fe7
 
 COCOAPODS: 0.38.2

@@ -135,6 +135,15 @@ class StreamTableViewController: UITableViewController, DropdownTitleViewDelegat
                     })
                     
                     self.streamNewsListItems = itemsInStream
+                    
+                    if count(itemsInStream) == 0
+                    {
+                        let alert = UIAlertController(title: "Repositron", message: "It looks like you don't have any news. Tap 'Stream' to add some repositories to your newsfeed.", preferredStyle: .Alert)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
                 }
                 else
                 {
@@ -471,7 +480,7 @@ class StreamTableViewController: UITableViewController, DropdownTitleViewDelegat
     
     func cellSelectedAtIndexPath(indexPath: NSIndexPath)
     {
-        
+        self.performSegueWithIdentifier("StreamShowIssue", sender: self.streamNewsListItems?[indexPath.row])
     }
     
     func repoPickerIsExisting(picker: RepoPickerTableViewController) {
@@ -488,6 +497,21 @@ class StreamTableViewController: UITableViewController, DropdownTitleViewDelegat
             if let destination = navigationController.viewControllers.first as? RepoPickerTableViewController
             {
                 destination.pickerDelegate = self
+            }
+        }
+        
+        if let destination = segue.destinationViewController as? IssueViewerTableViewController
+        {
+            if let comment = sender as? Comment
+            {
+                destination.repo = comment.repo
+                destination.issueNumber = comment.issueNumber
+            }
+            
+            if let issue = sender as? Issue
+            {
+                destination.repo = issue.repo
+                destination.issueNumber = issue.number
             }
         }
     }
